@@ -1,0 +1,36 @@
+// ======================
+// Config
+// ======================
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["interactiveTransactions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ======================
+// Enums
+// ======================
+enum UserRoles {
+  MADE
+  SUPPORT
+  USER
+}
+
+// ======================
+// Models
+// ======================
+
+model User {
+  id                   String              @id @default(cuid())
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime            @updatedAt
+  confirmedAt          DateTime?
+  email                String              @unique
+  passwordHash         String              @unique
+  role                 UserRoles           @default(USER)
+}

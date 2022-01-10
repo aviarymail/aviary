@@ -1,0 +1,36 @@
+scalar DateTime
+
+type Mutation {
+  confirmEmail(token: String!): User!
+  login(email: String!, password: String!): User!
+  logout: User!
+  signup(input: SignupInput!): User!
+}
+
+input PaginationInput {
+  cursor: String
+  page: Int
+  skip: Int
+  take: Int
+}
+
+type Query {
+  me: User
+}
+
+input SignupInput {
+  confirmation: String!
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+  username: String!
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  token: String
+  updatedAt: DateTime!
+}

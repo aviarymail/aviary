@@ -1,0 +1,55 @@
+{
+  "name": "api",
+  "version": "0.0.0",
+  "main": "src/index.ts",
+  "private": true,
+  "scripts": {
+    "postinstall": "yarn gen:prisma",
+    "build": "tsc -b",
+    "start": "NODE_ENV=development ts-node-dev --exit-child --transpile-only --no-notify -- ./src/index.ts",
+    "start:prod": "NODE_ENV=production node -r dotenv/config  ./dist/src/index.js",
+    "test": "NODE_ENV=test jest --silent --forceExit",
+    "gen:prisma": "prisma generate"
+  },
+  "dependencies": {
+    "@aviarymail/config": "workspace:*",
+    "@aviarymail/email-renderer": "workspace:*",
+    "@giraphql/core": "^2.23.0",
+    "@giraphql/plugin-scope-auth": "^2.15.0",
+    "@prisma/client": "^3.7.0",
+    "argon2": "^0.28.3",
+    "date-fns": "^2.28.0",
+    "directory-import": "^2.3.1",
+    "dotenv": "^10.0.0",
+    "env-var": "^7.1.1",
+    "fast-jwt": "^1.4.1",
+    "fastify": "^3.25.3",
+    "fastify-cookie": "^5.5.0",
+    "fastify-cors": "^6.0.2",
+    "findup-sync": "^5.0.0",
+    "graphql": "^16.2.0",
+    "graphql-redis-subscriptions": "^2.4.2",
+    "graphql-subscriptions": "^2.0.0",
+    "http-status-codes": "^2.2.0",
+    "ioredis": "^4.28.2",
+    "lodash": "^4.17.21",
+    "mercurius": "^9.1.0",
+    "mqemitter-redis": "^4.2.0",
+    "nanoid": "^3.1.30",
+    "pino": "^7.6.2",
+    "prisma": "^3.7.0",
+    "tslib": "^2.3.1"
+  },
+  "devDependencies": {
+    "@types/graphql": "^14.5.0",
+    "@types/ioredis": "^4.28.7",
+    "@types/pino": "^7.0.5",
+    "nodemon": "^2.0.15",
+    "pino-pretty": "^7.3.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.4"
+  },
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  }
+}

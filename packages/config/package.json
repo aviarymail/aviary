@@ -1,0 +1,10 @@
+{
+  "name": "@aviarymail/config",
+  "version": "0.0.0",
+  "license": "Apache-2.0",
+  "files": [
+    "rollup.config.js",
+    "tsconf.base.json",
+    "tsconf.solid.json"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "extends": "@aviarymail/config/tsconfig.solid.json",
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "outDir": "dist"
+  },
+  "exclude": ["dist"],
+
+}

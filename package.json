@@ -1,31 +1,36 @@
 {
   "name": "aviary",
   "version": "0.0.0",
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
+    "clean": "yarn clean:dist && yarn clean:node_modules",
+    "clean:dist": "find . -name \"dist\" -exec rm -rf '{}' +",
+    "clean:node_modules": "find . -name \"node_modules\" -exec rm -rf '{}' +",
     "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
+    "start": "turbo run start --parallel",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "api": "yarn workspace api",
+    "web": "yarn workspace web",
+    "email-renderer": "yarn workspace @aviarymail/email-renderer",
+    "email-primitives": "yarn workspace @aviarymail/email-primitives"
   },
   "devDependencies": {
     "prettier": "^2.5.1",
-    "turbo": "latest"
+    "rollup": "^2.63.0",
+    "rollup-preset-solid": "^1.0.1",
+    "turbo": "^1.0.24"
   },
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "turbo": {
     "pipeline": {
+      "start": {
+        "dependsOn": ["^build"],
+        "outputs": ["dist/**"]
+      },
       "build": {
-        "dependsOn": [
-          "^build"
-        ],
-        "outputs": [
-          "dist/**",
-          ".next/**"
-        ]
+        "dependsOn": ["^build"],
+        "outputs": ["dist/**"]
       },
       "lint": {
         "outputs": []
@@ -35,9 +40,16 @@
       }
     }
   },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  },
   "engines": {
-    "npm": ">=7.0.0",
-    "node": ">=14.0.0"
+    "yarn": ">=3.1.1",
+    "node": ">=16.0.0"
   },
   "packageManager": "yarn@3.1.1"
 }
