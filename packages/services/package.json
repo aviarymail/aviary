@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@napi-rs/uuid": "^0.2.0",
+    "form-data": "^4.0.0",
     "ioredis": "^4.28.3",
+    "mailgun.js": "^4.1.4",
     "nanoid": "^3.1.32",
     "pino": "^7.6.3"
   }

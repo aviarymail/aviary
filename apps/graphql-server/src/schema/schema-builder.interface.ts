@@ -9,6 +9,10 @@ export interface ISchemaBuilder {
     DateTime: { Input: Date; Output: Date };
   };
 
+  Objects: {
+    SuccessResponse: { success: boolean };
+  };
+
   Context: {
     request: FastifyRequest;
     reply: FastifyReply;

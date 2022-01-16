@@ -75,13 +75,18 @@ model EmailConfirmation {
 }
 
 model Session {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  token     String   @unique
-  userAgent String
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  maxAge       Int
+  token        String   @unique
+  refreshToken String   @unique
+  userAgent    String?
+  //
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
 
+  @@index([token])
+  @@index([refreshToken])
   @@index([userId])
 }
 

@@ -16,6 +16,7 @@
     "@giraphql/core": "^2.23.0",
     "@giraphql/plugin-prisma": "^0.14.0",
     "@giraphql/plugin-scope-auth": "^2.15.0",
+    "@giraphql/plugin-validation": "^2.16.0",
     "argon2": "^0.28.3",
     "date-fns": "^2.28.0",
     "directory-import": "^2.3.1",
@@ -25,6 +26,7 @@
     "fastify": "^3.25.3",
     "fastify-cookie": "^5.5.0",
     "fastify-cors": "^6.0.2",
+    "fastify-secure-session": "^3.0.0",
     "findup-sync": "^5.0.0",
     "graphql": "^16.2.0",
     "graphql-redis-subscriptions": "^2.4.2",
@@ -33,7 +35,8 @@
     "ioredis": "^4.28.3",
     "lodash": "^4.17.21",
     "mercurius": "^9.1.0",
-    "mqemitter-redis": "^4.2.0"
+    "mqemitter-redis": "^4.2.0",
+    "zod": "^3.11.6"
   },
   "devDependencies": {
     "@types/findup-sync": "^4.0.2",

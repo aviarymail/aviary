@@ -1,7 +1,8 @@
 import { db } from '@aviarymail/db';
-import { Utils } from '@aviarymail/services';
+import { utils } from '@aviarymail/services';
 import fastify from 'fastify';
 import cookie from 'fastify-cookie';
+import secureSession from 'fastify-secure-session';
 import cors from 'fastify-cors';
 import mercurius from 'mercurius';
 import { Config } from './lib/config';
@@ -39,7 +40,7 @@ export function createServer() {
 
   server.addHook('onClose', async () => {
     await db.$disconnect();
-    await Utils.redis.quit();
+    await utils.redis.quit();
   });
 
   return server;

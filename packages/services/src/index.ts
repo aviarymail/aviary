@@ -1,5 +1,6 @@
-export * as Utils from './utils';
-export * as Auth from './auth';
+export * from './utils';
+
+export * as authService from './auth';
 
 // auth/send-login-email
 // auth/validate-login

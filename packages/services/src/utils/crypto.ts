@@ -5,8 +5,12 @@ import { redis } from './redis';
 /**
  * Generate a secure token.
  */
-export async function generateSecureToken(): Promise<string> {
+export async function generateToken(): Promise<string> {
   return nanoid(48);
+}
+
+export async function generateTokenPair(): Promise<[string, string]> {
+  return Promise.all([generateToken(), generateToken()]);
 }
 
 /**
@@ -14,7 +18,7 @@ export async function generateSecureToken(): Promise<string> {
  * @param value
  */
 export async function generateRedisToken(value: string): Promise<string> {
-  const token = await generateSecureToken();
+  const token = await generateToken();
   const res = await redis.set(token, value);
 
   if (!res) {

@@ -1,7 +1,7 @@
 scalar DateTime
 
 type Mutation {
-  login(email: String!): User!
+  login(code: String!, email: String!): User!
   logout: User!
   signup(input: SignupInput!): User!
 }
@@ -36,12 +36,13 @@ type Session {
 }
 
 input SignupInput {
-  confirmation: String!
   email: String!
   firstName: String!
   lastName: String!
-  password: String!
-  username: String!
+}
+
+type SuccessResponse {
+  success: Boolean!
 }
 
 type Team {

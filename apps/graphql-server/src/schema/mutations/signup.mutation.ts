@@ -1,34 +1,46 @@
-import { authService } from '../../services/auth-service';
+import { db } from '@aviarymail/db';
 import { builder } from '../schema-builder';
+import { object, string } from 'zod';
+import { BadRequestException } from '../lib/errors';
 
-const SignupInput = builder.inputType('SignupInput', {
+const input = builder.inputType('SignupInput', {
   fields: t => ({
     email: t.string(),
-    password: t.string(),
-    confirmation: t.string(),
     firstName: t.string(),
     lastName: t.string(),
-    username: t.string(),
   }),
+});
+
+const schema = object({
+  email: string().email(),
+  firstName: string().min(1, 'First name is required.'),
+  lastName: string().min(1, 'First name is required.'),
 });
 
 builder.mutationField('signup', t =>
   t.prismaField({
     type: 'User',
-    authScopes: { public: true },
+    authScopes: {
+      public: true,
+    },
     args: {
-      input: t.arg({ type: SignupInput }),
+      input: t.arg({
+        type: input,
+        validate: { schema },
+      }),
     },
     async resolve(query, _root, { input }, _ctx) {
-      const { user, token } = await authService.signUp(input);
+      const user = await db.user.findUnique({
+        where: { email: input.email },
+      });
 
-      // await this.emailService.requestEmailConfirmation({
-      //   to: input.email,
-      //   name: `${input.firstName} ${input.lastName}`,
-      //   token,
-      // });
+      if (user) {
+        throw new BadRequestException('An account exists with that email.');
+      }
 
-      return user;
+      // TODO: send email confirmation email
+
+      return db.user.create({ ...query, data: input });
     },
   })
 );

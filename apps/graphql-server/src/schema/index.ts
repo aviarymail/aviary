@@ -6,6 +6,7 @@ import { builder } from './schema-builder';
 
 import './object-types/project.type';
 import './object-types/session.type';
+import './object-types/success-response.type';
 import './object-types/team-invite.type';
 import './object-types/team-membership.type';
 import './object-types/team.type';

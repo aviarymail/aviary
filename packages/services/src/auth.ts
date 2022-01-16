@@ -1,17 +1,24 @@
-import { db } from '@aviarymail/db';
+import { db, Prisma } from '@aviarymail/db';
 import { generateRedisToken } from './utils/crypto';
 import { redis } from './utils/redis';
 
-export async function registerUser(params: { email: string; firstName: string; lastName: string }) {
+export async function registerUser(
+  params: { email: string; firstName: string; lastName: string },
+  opts?: { include?: Prisma.UserInclude }
+) {
   const user = await db.user.findUnique({
     where: { email: params.email },
   });
 
   if (user) {
-    return { error: 'USER_EXISTS' } as const;
+    return { data: null, error: 'user/EMAIL_TAKEN' } as const;
   }
 
-  const data = await db.user.create({ data: params });
+  const data = await db.user.create({
+    ...opts,
+    data: params,
+  });
+
   return { data };
 }
 
@@ -21,7 +28,7 @@ export async function sendLoginEmail(email: string) {
   });
 
   if (!user) {
-    return { error: 'NULL_USER' } as const;
+    return { error: 'user/NOT_FOUND' } as const;
   }
 
   await generateRedisToken(user.email);
@@ -31,9 +38,12 @@ export async function sendLoginEmail(email: string) {
   };
 }
 
-export async function validateLogin(email: string, token: string) {
-  const value = await redis.get(token);
+export async function validateLogin(email: string, code: string) {
+  const value = await redis.get(code);
 
-  if (value !== email) {
+  if (!value || value !== email) {
+    return { error: 'auth/INVALID_CODE' } as const;
   }
+
+  return { email };
 }
