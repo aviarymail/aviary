@@ -1,0 +1,141 @@
+// ======================
+// Config
+// ======================
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["interactiveTransactions", "referentialIntegrity"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  shadowDatabaseUrl    = env("SHADOW_DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+generator giraphql {
+  provider = "prisma-giraphql-types"
+}
+
+// ======================
+// Enums
+// ======================
+
+enum UserRoles {
+  MADE
+  SUPPORT
+  USER
+}
+
+enum TeamRoles {
+  ADMIN
+  MEMBER
+  BILLING
+}
+
+enum FieldTypes {
+  ARRAY
+  BOOLEAN
+  NUMBER
+  STRING
+  ENUM
+}
+
+// ======================
+// Models
+// ======================
+
+model User {
+  id                String             @id @default(cuid())
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  confirmedAt       DateTime?
+  role              UserRoles          @default(USER)
+  email             String             @unique
+  firstName         String
+  lastName          String
+  //
+  emailConfirmation EmailConfirmation?
+  teamMemberships   TeamMembership[]
+  teamInvites       TeamInvite[]
+  sessions          Session[]
+}
+
+model EmailConfirmation {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  token     String
+  //
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([token])
+  @@index([userId])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  token     String   @unique
+  userAgent String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+model Team {
+  id          String           @id @default(cuid())
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  name        String
+  //
+  memberships TeamMembership[]
+  projects    Project[]
+  invites     TeamInvite[]
+}
+
+model TeamMembership {
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  role      TeamRoles @default(MEMBER)
+  //
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  teamId    String
+  team      Team      @relation(fields: [teamId], references: [id])
+
+  @@unique([userId, teamId])
+  @@index([userId])
+  @@index([teamId])
+}
+
+model Project {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  //
+  teamId    String
+  team      Team     @relation(fields: [teamId], references: [id])
+
+  @@index([teamId])
+}
+
+model TeamInvite {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  email       String
+  teamId      String
+  team        Team     @relation(fields: [teamId], references: [id])
+  //
+  invitedById String
+  invitedBy   User     @relation(fields: [invitedById], references: [id])
+
+  @@unique([email, teamId])
+  @@index([email])
+  @@index([teamId])
+  @@index([invitedById])
+}

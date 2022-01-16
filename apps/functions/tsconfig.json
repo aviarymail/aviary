@@ -1,0 +1,3 @@
+{
+  "extends": "@aviarymail/config/tsconfig.base.json",
+}

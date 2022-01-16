@@ -1,13 +1,18 @@
 import { defineConfig } from 'vite';
-import solidPlugin from 'vite-plugin-solid';
+import solid from 'vite-plugin-solid';
+import windi from 'vite-plugin-windicss';
 
 export default defineConfig({
-  plugins: [solidPlugin()],
+  plugins: [
+    solid(),
+    windi({
+      config: {
+        extract: { include: ['src/**/*.{ts,tsx}'] },
+      },
+    }),
+  ],
   build: {
     target: 'esnext',
     polyfillDynamicImport: false,
-  },
-  optimizeDeps: {
-    exclude: ['@aviaryemail/email-primitives'],
   },
 });

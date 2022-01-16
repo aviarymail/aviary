@@ -11,26 +11,40 @@
     "start": "turbo run start --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "api": "yarn workspace api",
+    "fns": "yarn workspace fns",
     "web": "yarn workspace web",
-    "email-renderer": "yarn workspace @aviarymail/email-renderer",
-    "email-primitives": "yarn workspace @aviarymail/email-primitives"
+    "graphql-server": "yarn workspace graphql-server",
+    "cli": "yarn workspace @aviarymail/cli",
+    "client": "yarn workspace @aviarymail/client",
+    "db": "yarn workspace @aviarymail/db",
+    "services": "yarn workspace @aviarymail/services"
   },
   "devDependencies": {
     "prettier": "^2.5.1",
-    "rollup": "^2.63.0",
-    "rollup-preset-solid": "^1.0.1",
-    "turbo": "^1.0.24"
+    "rollup": "^2.64.0",
+    "rollup-preset-solid": "^1.1.0",
+    "turbo": "^1.0.28"
+  },
+  "resolutions": {
+    "solid-start-node": "0.1.0-alpha.54"
   },
   "turbo": {
     "pipeline": {
       "start": {
-        "dependsOn": ["^build"],
-        "outputs": ["dist/**"]
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          "dist/**"
+        ]
       },
       "build": {
-        "dependsOn": ["^build"],
-        "outputs": ["dist/**"]
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          "dist/**"
+        ]
       },
       "lint": {
         "outputs": []

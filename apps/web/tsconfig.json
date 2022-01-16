@@ -1,6 +1,14 @@
 {
-  "extends": "@aviarymail/config/tsconfig.solid.json",
+  "extend": "@aviarymail/config/tsconfig.base.json",
   "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
     "types": ["vite/client"]
-  }
+  },
 }

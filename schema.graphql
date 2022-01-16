@@ -1,8 +1,7 @@
 scalar DateTime
 
 type Mutation {
-  confirmEmail(token: String!): User!
-  login(email: String!, password: String!): User!
+  login(email: String!): User!
   logout: User!
   signup(input: SignupInput!): User!
 }
@@ -14,8 +13,26 @@ input PaginationInput {
   take: Int
 }
 
+type Project {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  team: Team!
+  teamId: ID!
+  updatedAt: DateTime!
+}
+
 type Query {
   me: User
+  project(id: ID!): Project
+  team(id: ID!): Team
+}
+
+type Session {
+  createdAt: DateTime!
+  id: ID!
+  token: String!
+  userAgent: String!
 }
 
 input SignupInput {
@@ -27,10 +44,59 @@ input SignupInput {
   username: String!
 }
 
-type User {
+type Team {
+  createdAt: DateTime!
+  id: ID!
+  invites: [TeamInvite!]!
+  memberships: [TeamMembership!]!
+  name: String!
+  projects: [Project!]!
+  updatedAt: DateTime!
+}
+
+type TeamInvite {
   createdAt: DateTime!
   email: String!
   id: ID!
-  token: String
+  invitedBy: User!
+  invitedById: ID!
+  team: Team!
+  teamId: ID!
+}
+
+type TeamMembership {
+  createdAt: DateTime!
+  id: ID!
+  role: TeamRoles!
+  team: Team!
+  teamId: ID!
   updatedAt: DateTime!
+  user: User!
+  userId: ID!
+}
+
+enum TeamRoles {
+  ADMIN
+  BILLING
+  MEMBER
+}
+
+type User {
+  confirmedAt: DateTime
+  createdAt: DateTime!
+  email: String!
+  firstName: String!
+  id: ID!
+  lastName: String!
+  role: UserRoles!
+  sessions: [Session!]!
+  teamInvites: [TeamInvite!]!
+  teamMemberships: [TeamMembership!]!
+  updatedAt: DateTime!
+}
+
+enum UserRoles {
+  MADE
+  SUPPORT
+  USER
 }

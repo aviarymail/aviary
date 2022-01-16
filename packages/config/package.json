@@ -2,6 +2,7 @@
   "name": "@aviarymail/config",
   "version": "0.0.0",
   "license": "Apache-2.0",
+  "private": true,
   "files": [
     "rollup.config.js",
     "tsconf.base.json",

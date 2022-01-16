@@ -1,5 +1,0 @@
-{
-  "extends": "@aviarymail/config/tsconfig.solid.json",
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["dist"] ,
-}
