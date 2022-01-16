@@ -31,6 +31,10 @@ __metadata:
 "@aviarymail/config@workspace:*, @aviarymail/config@workspace:packages/config":
   version: 0.0.0-use.local
   resolution: "@aviarymail/config@workspace:packages/config"
+  dependencies:
+    dotenv: ^12.0.4
+    env-var: ^7.1.1
+    findup-sync: ^5.0.0
   languageName: unknown
   linkType: soft
 
@@ -1901,6 +1905,13 @@ __metadata:
   version: 12.0.3
   resolution: "dotenv@npm:12.0.3"
   checksum: 06c851c7291303783ccf1ba6a9b4937dcadeaedc8ba34258f2d0c18566c45399b0bdc28973a5b685f7489578a09c753041d9f62bf4b983379af8059e442a9f64
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^12.0.4":
+  version: 12.0.4
+  resolution: "dotenv@npm:12.0.4"
+  checksum: d79a69fae72b5c5785906600ce42388b48bf7ab20bbac8346bac327cc87a68617a09b1b3cd39965210f011ab07ea4641d5952d46f67f4e40a66b9ad76cf456c0
   languageName: node
   linkType: hard
 

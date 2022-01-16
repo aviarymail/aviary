@@ -18,6 +18,7 @@ export interface ISchemaBuilder {
     reply: FastifyReply;
     pubsub: PubSub;
     currentUserId?: string;
+    sessionId?: string;
   };
 
   SubscriptionContext: {
@@ -25,6 +26,7 @@ export interface ISchemaBuilder {
     request: FastifyRequest;
     pubsub: PubSub;
     currentUserId?: string;
+    sessionId?: string;
   };
 
   AuthScopes: {

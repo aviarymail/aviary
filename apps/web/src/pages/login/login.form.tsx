@@ -1,6 +1,6 @@
 import { createForm } from '@felte/solid';
 import { validator, ValidatorConfig } from '@felte/validator-zod';
-import * as z from 'zod';
+import { z } from 'zod';
 
 const schema = z.object({
   email: z.string().min(1, 'Email is required').email(),

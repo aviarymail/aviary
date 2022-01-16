@@ -1,7 +1,7 @@
-import { db } from '@aviarymail/db';
 import { builder } from '../schema-builder';
-import { object, string } from 'zod';
-import { BadRequestException } from '../lib/errors';
+import { z } from 'zod';
+import { BadRequestException, InternalServerErrorException } from '../lib/errors';
+import { authService } from '@aviarymail/services';
 
 const input = builder.inputType('SignupInput', {
   fields: t => ({
@@ -11,10 +11,10 @@ const input = builder.inputType('SignupInput', {
   }),
 });
 
-const schema = object({
-  email: string().email(),
-  firstName: string().min(1, 'First name is required.'),
-  lastName: string().min(1, 'First name is required.'),
+const schema = z.object({
+  email: z.string().email(),
+  firstName: z.string().min(1, 'First name is required.'),
+  lastName: z.string().min(1, 'First name is required.'),
 });
 
 builder.mutationField('signup', t =>
@@ -30,17 +30,20 @@ builder.mutationField('signup', t =>
       }),
     },
     async resolve(query, _root, { input }, _ctx) {
-      const user = await db.user.findUnique({
-        where: { email: input.email },
+      const { user, error } = await authService.registerUser({
+        ...input,
+        query,
       });
 
-      if (user) {
+      if (error === 'user/EMAIL_TAKEN') {
         throw new BadRequestException('An account exists with that email.');
       }
 
-      // TODO: send email confirmation email
+      if (!user) {
+        throw new InternalServerErrorException();
+      }
 
-      return db.user.create({ ...query, data: input });
+      return user;
     },
   })
 );

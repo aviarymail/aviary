@@ -9,10 +9,6 @@ export async function generateToken(): Promise<string> {
   return nanoid(48);
 }
 
-export async function generateTokenPair(): Promise<[string, string]> {
-  return Promise.all([generateToken(), generateToken()]);
-}
-
 /**
  * Generates a secure token then use that token as the key while storing the given value.
  * @param value
