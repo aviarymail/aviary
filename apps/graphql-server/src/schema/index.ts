@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import { lexicographicSortSchema, printSchema } from 'graphql';
-import { ServerConfig } from '@aviarymail/config';
+import { ServerEnv } from '@aviarymail/config/server-env';
 import { builder } from './schema-builder';
 
 import './object-types/project.type';
@@ -16,15 +16,17 @@ import './queries/me.query';
 import './queries/project.query';
 import './queries/team.query';
 
-import './mutations/validate-login.mutation';
+import './mutations/create-project.mutation';
 import './mutations/logout.mutation';
+import './mutations/request-login-code.mutation';
 import './mutations/signup.mutation';
+import './mutations/validate-login.mutation';
 
 import './input-types/pagination-input';
 
 export const schema = builder.toSchema({});
 
-if (ServerConfig.IS_DEV) {
+if (ServerEnv.IS_DEV) {
   const schemaPath = path.join(process.cwd(), '../../schema.graphql');
   const schemaAsString = printSchema(lexicographicSortSchema(schema));
   const existing = fs.existsSync(schemaPath) && fs.readFileSync(schemaPath, 'utf-8');

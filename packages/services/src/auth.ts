@@ -1,11 +1,11 @@
 import { db, Prisma } from '@aviarymail/db';
-import { ServerConfig } from '@aviarymail/config';
-import { generateRedisToken, generateToken } from './utils/crypto';
+import { ServerEnv } from '@aviarymail/config/server-env';
+import { generateToken } from './utils/crypto';
 import { redis } from './utils/redis';
 
 const COOKIE_CONFIG = {
-  httpOnly: ServerConfig.IS_PROD,
-  secure: ServerConfig.IS_PROD,
+  httpOnly: ServerEnv.IS_PROD,
+  secure: ServerEnv.IS_PROD,
 };
 
 /**
@@ -97,7 +97,7 @@ export async function validateLogin(params: {
  */
 export async function createSession(params: { email: string; userAgent?: string }) {
   const [sessionToken, refreshToken] = await Promise.all([generateToken(), generateToken()]);
-  const maxAge = Date.now() + ServerConfig.COOKIE_REFRESH_TTL;
+  const maxAge = Date.now() + ServerEnv.COOKIE_REFRESH_TTL;
 
   await db.session.create({
     data: {
@@ -131,7 +131,7 @@ export async function refreshSession(sessionId: string) {
     data: {
       token: sessionToken,
       refreshToken: refreshToken,
-      maxAge: Date.now() + ServerConfig.COOKIE_REFRESH_TTL,
+      maxAge: Date.now() + ServerEnv.COOKIE_REFRESH_TTL,
     },
   });
 
@@ -162,19 +162,19 @@ export async function deleteSession(sessionId?: string) {
 function _getCookieConfigs(sessionToken: string, refreshToken: string) {
   return [
     {
-      name: ServerConfig.COOKIE_TOKEN,
+      name: ServerEnv.COOKIE_TOKEN,
       token: sessionToken,
       cookieConfig: {
         ...COOKIE_CONFIG,
-        maxAge: ServerConfig.COOKIE_TOKEN_TTL,
+        maxAge: ServerEnv.COOKIE_TOKEN_TTL,
       },
     },
     {
-      name: ServerConfig.COOKIE_REFRESH,
+      name: ServerEnv.COOKIE_REFRESH,
       token: refreshToken,
       cookieConfig: {
         ...COOKIE_CONFIG,
-        maxAge: ServerConfig.COOKIE_REFRESH_TTL,
+        maxAge: ServerEnv.COOKIE_REFRESH_TTL,
       },
     },
   ] as const;

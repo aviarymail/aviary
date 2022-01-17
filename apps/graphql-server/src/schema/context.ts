@@ -1,10 +1,10 @@
 import { db, Session } from '@aviarymail/db';
-import { ServerConfig } from '@aviarymail/config';
+import { authService } from '@aviarymail/services';
+import { ServerEnv } from '@aviarymail/config/server-env';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { SocketStream } from 'fastify-websocket';
 
 import { ISchemaBuilder } from './schema-builder.interface';
-import { authService } from '@aviarymail/services';
 
 type ResolverContext = Omit<ISchemaBuilder['Context'], 'pubsub'>;
 type SubContext = Omit<ISchemaBuilder['SubscriptionContext'], 'pubsub'>;
@@ -51,8 +51,8 @@ export async function subscriptionContext(
  * If we're given a token, check for
  */
 async function _findSession(request: FastifyRequest) {
-  const token = request.cookies[ServerConfig.COOKIE_TOKEN];
-  const refreshToken = request.cookies[ServerConfig.COOKIE_REFRESH];
+  const token = request.cookies[ServerEnv.COOKIE_TOKEN];
+  const refreshToken = request.cookies[ServerEnv.COOKIE_REFRESH];
   let session: Session | null = null;
 
   // If we don't have either token, we have no session.

@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import solid from 'vite-plugin-solid';
+import solid from 'solid-start';
 import windi from 'vite-plugin-windicss';
 
 export default defineConfig({
@@ -11,8 +11,4 @@ export default defineConfig({
       },
     }),
   ],
-  build: {
-    target: 'esnext',
-    polyfillDynamicImport: false,
-  },
 });

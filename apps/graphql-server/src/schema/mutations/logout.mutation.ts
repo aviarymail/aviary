@@ -1,4 +1,4 @@
-import { ServerConfig } from '@aviarymail/config';
+import { ServerEnv } from '@aviarymail/config/server-env';
 import { authService } from '@aviarymail/services';
 import { builder } from '../schema-builder';
 
@@ -13,8 +13,8 @@ builder.mutationField('logout', t =>
     async resolve(_root, _args, { reply, sessionId }) {
       await authService.deleteSession(sessionId);
 
-      reply.setCookie(ServerConfig.COOKIE_TOKEN, '', COOKIE_CONFIG);
-      reply.setCookie(ServerConfig.COOKIE_REFRESH, '', COOKIE_CONFIG);
+      reply.setCookie(ServerEnv.COOKIE_TOKEN, '', COOKIE_CONFIG);
+      reply.setCookie(ServerEnv.COOKIE_REFRESH, '', COOKIE_CONFIG);
 
       return { success: true };
     },

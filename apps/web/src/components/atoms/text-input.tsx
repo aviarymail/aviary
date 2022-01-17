@@ -1,5 +1,4 @@
-import { Component, ComponentProps, Show } from 'solid-js';
-import { DeepReadonly } from 'solid-js/store';
+import { Component, ComponentProps } from 'solid-js';
 
 interface Props extends ComponentProps<'input'> {
   name: string;

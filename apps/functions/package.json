@@ -2,10 +2,11 @@
   "name": "functions",
   "version": "0.0.0",
   "private": true,
+  "dependencies": {
+    "@aviarymail/config": "workspace:*",
+    "@vercel/node": "^1.12.1"
+  },
   "devDependencies": {
     "vercel": "^23.1.2"
-  },
-  "dependencies": {
-    "@vercel/node": "^1.12.1"
   }
 }

@@ -1,5 +1,4 @@
 import { db } from '@aviarymail/db';
-import { $User } from '../object-types/user.type';
 import { builder } from '../schema-builder';
 
 builder.queryField('me', t =>

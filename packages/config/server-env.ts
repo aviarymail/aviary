@@ -4,7 +4,7 @@ import findUpSync from 'findup-sync';
 
 dotenv.config({ path: findUpSync('.env')! });
 
-export const ServerConfig = {
+export const ServerEnv = {
   ENV: env.get('NODE_ENV').asString(),
   IS_DEV: env.get('NODE_ENV').asString() === 'development',
   IS_PROD: env.get('NODE_ENV').asString() === 'production',

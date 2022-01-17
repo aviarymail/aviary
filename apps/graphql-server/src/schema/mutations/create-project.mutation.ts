@@ -1,3 +1,4 @@
+import { db } from '@aviarymail/db';
 import { teamsService } from '@aviarymail/services';
 import { z } from 'zod';
 import { ForbiddenException, InternalServerErrorException } from '../lib/errors';
@@ -25,21 +26,28 @@ builder.mutationField('createProject', t =>
       }),
     },
     async resolve(query, _root, { input }, { currentUserId }) {
-      const { project, error } = await teamsService.createProject({
-        ...input,
-        userId: currentUserId!,
-        query,
+      const teamMembership = await db.teamMembership.findUnique({
+        where: {
+          userId_teamId: {
+            userId: currentUserId!,
+            teamId: input.teamId,
+          },
+        },
       });
 
-      if (error === 'teamMembership/NOT_FOUND') {
+      if (!teamMembership) {
         throw new ForbiddenException();
       }
 
-      if (!project) {
-        throw new InternalServerErrorException();
-      }
-
-      return project;
+      return db.project.create({
+        ...query,
+        data: {
+          name: input.name,
+          team: {
+            connect: { id: input.teamId },
+          },
+        },
+      });
     },
   })
 );
