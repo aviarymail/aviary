@@ -6,8 +6,8 @@
   "files": [
     "server-env.ts",
     "rollup.config.js",
-    "tsconf.base.json",
-    "tsconf.solid.json"
+    "tsconfig.base.json",
+    "tsconfig.solid.json"
   ],
   "devDependencies": {
     "dotenv": "^12.0.4",

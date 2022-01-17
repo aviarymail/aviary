@@ -1,6 +1,4 @@
 // @refresh reload
-import 'virtual:windi.css';
-import './styles.css';
 
 import { Links, Meta, Outlet, Scripts } from 'solid-start/components';
 import { Header } from './components/module/header';
@@ -15,8 +13,12 @@ export default function Root() {
         <Links />
       </head>
       <body class="bg-white text-black">
-        <Header />
-        <Outlet />
+        <div class="flex flex-col min-h-screen w-full">
+          <Header />
+          <div class="flex flex-col h-full flex-1">
+            <Outlet />
+          </div>
+        </div>
         <Scripts />
       </body>
     </html>
