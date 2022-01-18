@@ -1,5 +1,3 @@
-import 'virtual:windi.css';
-import '../../styles.css';
 import { NavLink } from 'solid-app-router';
 import { Wordmark } from '../svg/wordmark.svg';
 

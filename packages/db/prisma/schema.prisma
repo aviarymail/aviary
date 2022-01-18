@@ -77,7 +77,6 @@ model EmailConfirmation {
 model Session {
   id           String   @id @default(cuid())
   createdAt    DateTime @default(now())
-  maxAge       Int
   token        String   @unique
   refreshToken String   @unique
   userAgent    String?

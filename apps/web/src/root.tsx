@@ -1,7 +1,7 @@
 // @refresh reload
 
-import { Links, Meta, Outlet, Scripts } from 'solid-start/components';
-import { Header } from './components/module/header';
+import { Links, Meta, Scripts } from 'solid-start/components';
+import { App } from './app';
 
 export default function Root() {
   return (
@@ -13,12 +13,7 @@ export default function Root() {
         <Links />
       </head>
       <body class="bg-white text-black">
-        <div class="flex flex-col min-h-screen w-full">
-          <Header />
-          <div class="flex flex-col h-full flex-1">
-            <Outlet />
-          </div>
-        </div>
+        <App />
         <Scripts />
       </body>
     </html>

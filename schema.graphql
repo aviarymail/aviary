@@ -1,9 +1,16 @@
+input CreateProjectInput {
+  name: String!
+  teamId: ID!
+}
+
 scalar DateTime
 
 type Mutation {
-  login(code: String!, email: String!): User!
-  logout: User!
+  createProject(input: CreateProjectInput!): Project!
+  logout: SuccessResponse!
+  requestLoginCode(email: String!): SuccessResponse!
   signup(input: SignupInput!): User!
+  validateLogin(code: String!, email: String!): User!
 }
 
 input PaginationInput {

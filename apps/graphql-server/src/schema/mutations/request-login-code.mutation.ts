@@ -1,7 +1,7 @@
 import { authService } from '@aviarymail/services';
 import { z } from 'zod';
 
-import { BadRequestException } from '../lib/errors';
+import { BadRequestException, InternalServerErrorException } from '../lib/errors';
 import { builder } from '../schema-builder';
 
 builder.mutationField('requestLoginCode', t =>
@@ -20,6 +20,10 @@ builder.mutationField('requestLoginCode', t =>
 
       if (error === 'user/NOT_FOUND') {
         throw new BadRequestException();
+      }
+
+      if (error === 'redis/COULDNT_SAVE_CODE') {
+        throw new InternalServerErrorException();
       }
 
       return { success: true };

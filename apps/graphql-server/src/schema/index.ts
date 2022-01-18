@@ -26,7 +26,7 @@ import './input-types/pagination-input';
 
 export const schema = builder.toSchema({});
 
-if (ServerEnv.IS_DEV) {
+if (ServerEnv.DEV) {
   const schemaPath = path.join(process.cwd(), '../../schema.graphql');
   const schemaAsString = printSchema(lexicographicSortSchema(schema));
   const existing = fs.existsSync(schemaPath) && fs.readFileSync(schemaPath, 'utf-8');

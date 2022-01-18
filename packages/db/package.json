@@ -7,7 +7,8 @@
   "scripts": {
     "postinstall": "yarn generate",
     "generate": "prisma generate",
-    "push": "prisma db push"
+    "push": "prisma db push",
+    "reinit": "./scripts/reinit.sh"
   },
   "dependencies": {
     "@giraphql/plugin-prisma": "^0.14.0",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "graphql": "^16.2.0",
+    "tasuku": "^1.0.2",
     "typescript": "^4.5.4"
   }
 }

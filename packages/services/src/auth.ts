@@ -1,15 +1,18 @@
 import { db, Prisma } from '@aviarymail/db';
 import { ServerEnv } from '@aviarymail/config/server-env';
-import { generateToken } from './utils/crypto';
+import { generateRedisToken, generateToken } from './utils/crypto';
 import { redis } from './utils/redis';
+import { logger } from '.';
 
 const COOKIE_CONFIG = {
-  httpOnly: ServerEnv.IS_PROD,
-  secure: ServerEnv.IS_PROD,
+  httpOnly: ServerEnv.PROD,
+  secure: ServerEnv.PROD,
 };
 
 /**
+ *
  * Create a new user and, if necessary, send them a confirmation email.
+ *
  * @param params
  */
 export async function registerUser(params: {
@@ -42,6 +45,12 @@ export async function registerUser(params: {
   return { user };
 }
 
+/**
+ *
+ * Generates a login code and sends the user an email for them to login with.
+ *
+ * @param email
+ */
 export async function requestLoginCode(email: string) {
   const user = await db.user.findUnique({
     where: { email },
@@ -51,14 +60,28 @@ export async function requestLoginCode(email: string) {
     return { error: 'user/NOT_FOUND' } as const;
   }
 
+  const code = await _generateLoginCode(user.id);
+
+  if (ServerEnv.DEV) {
+    console.log(
+      '\n' +
+        `Sending login request code to ${email} \n\n` +
+        'Click to login: \n' +
+        `http://localhost:8080/login/validate?email=${email}&code=${code}` +
+        '\n'
+    );
+  }
+
   // TODO: Send login code email
 
   return { user };
 }
 
 /**
+ *
  * Validate a user's login. Take their email as well as the code we sent to them
  * in the request login message to confirm their identity and create a session.
+ *
  * @param params
  */
 export async function validateLogin(params: {
@@ -67,12 +90,6 @@ export async function validateLogin(params: {
   userAgent?: string;
   query?: Partial<Prisma.UserFindUniqueArgs>;
 }) {
-  const value = await redis.get(params.code);
-
-  if (!value || value !== params.email) {
-    return { error: 'auth/INVALID_CODE' } as const;
-  }
-
   const user = await db.user.findUnique({
     ...params.query,
     where: { email: params.email },
@@ -80,6 +97,12 @@ export async function validateLogin(params: {
 
   if (!user) {
     return { error: 'user/NOT_FOUND' } as const;
+  }
+
+  const valid = await _validateLoginCode(user.id, params.code);
+
+  if (!valid) {
+    return { error: 'auth/INVALID_CODE' } as const;
   }
 
   const { cookies } = await createSession({
@@ -91,19 +114,19 @@ export async function validateLogin(params: {
 }
 
 /**
+ *
  * Create a session with a token and refresh token.
  * Build cookie configurations to be set by the reply.
+ *
  * @param params
  */
 export async function createSession(params: { email: string; userAgent?: string }) {
   const [sessionToken, refreshToken] = await Promise.all([generateToken(), generateToken()]);
-  const maxAge = Date.now() + ServerEnv.COOKIE_REFRESH_TTL;
 
   await db.session.create({
     data: {
       token: sessionToken,
       refreshToken,
-      maxAge,
       userAgent: params.userAgent,
       user: {
         connect: { email: params.email },
@@ -119,8 +142,10 @@ export async function createSession(params: { email: string; userAgent?: string 
 }
 
 /**
+ *
  * Take a given session and refresh it with new tokens.
  * Build cookie configurations to be set by the reply.
+ *
  * @param sessionId
  */
 export async function refreshSession(sessionId: string) {
@@ -131,7 +156,6 @@ export async function refreshSession(sessionId: string) {
     data: {
       token: sessionToken,
       refreshToken: refreshToken,
-      maxAge: Date.now() + ServerEnv.COOKIE_REFRESH_TTL,
     },
   });
 
@@ -143,7 +167,9 @@ export async function refreshSession(sessionId: string) {
 }
 
 /**
+ *
  * Delete a session.
+ *
  * @param sessionId
  */
 export async function deleteSession(sessionId?: string) {
@@ -155,7 +181,9 @@ export async function deleteSession(sessionId?: string) {
 }
 
 /**
+ *
  * Create a tuple of cookie configurations [sessionCookie, refreshCookie].
+ *
  * @param sessionToken
  * @param refreshToken
  */
@@ -178,4 +206,46 @@ function _getCookieConfigs(sessionToken: string, refreshToken: string) {
       },
     },
   ] as const;
+}
+
+/**
+ *
+ * Generates a six digit login code and saves it to redis.
+ *
+ * @param userId
+ */
+async function _generateLoginCode(userId: string) {
+  let code = '';
+
+  for (let index = 0; index < 6; index++) {
+    code += String(Math.floor(Math.random() * 10));
+  }
+
+  const res = await redis.set(userId, code, 'ex', 60 * 5);
+
+  if (res !== 'OK') {
+    logger.error('Auth._generateLoginCode: Failed to save code to redis db.');
+    throw new Error();
+  }
+
+  return code;
+}
+
+/**
+ *
+ * Validates a given combo of userId and code to determine a users identity.
+ *
+ * @param userId
+ * @param code
+ */
+async function _validateLoginCode(userId: string, code: string) {
+  const value = await redis.get(userId);
+  const valid = value && value === code;
+
+  if (valid) {
+    await redis.del(userId);
+    return true;
+  }
+
+  return false;
 }
