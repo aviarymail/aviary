@@ -1,7 +1,10 @@
-export class AviaryEmailClient {
+export class AviaryMailClient {
   constructor() {
     throw new Error(
-      'The AviaryEmailClient hasnt been generated. Please install the cli run `aviaryemail generate`'
+      'The AviaryMailClient hasnt been generated. Please install the cli run `aviarymail g`'
     );
   }
 }
+
+export class AviaryMailClientProjectName {}
+export class AviaryMailClientAnotherProjectName {}

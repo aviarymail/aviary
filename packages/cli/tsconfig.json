@@ -2,6 +2,9 @@
   "extends": "@aviarymail/config/tsconfig.base.json",
   "include": ["./tests", "./src/**/*.ts"],
   "compilerOptions": {
+    "declarationMap": false,
+    "declaration": false,
+    "composite": false,
     "rootDir": ".",
     "outDir": "./dist"
   }
