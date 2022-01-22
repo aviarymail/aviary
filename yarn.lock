@@ -18,19 +18,21 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aviarymail/cli@workspace:packages/cli"
   dependencies:
+    "@aviarymail/client": "workspace:*"
     "@aviarymail/config": "workspace:*"
     cleye: ^1.0.1
+    node-fetch: ^3.1.1
     pkg: ^5.5.2
     tasuku: ^1.0.2
     typescript: ^4.5.4
   languageName: unknown
   linkType: soft
 
-"@aviarymail/client@workspace:packages/client":
+"@aviarymail/client@workspace:*, @aviarymail/client@workspace:packages/client":
   version: 0.0.0-use.local
   resolution: "@aviarymail/client@workspace:packages/client"
   dependencies:
-    node-fetch: ^3.1.0
+    node-fetch: ^3.1.1
   languageName: unknown
   linkType: soft
 
@@ -38,7 +40,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aviarymail/config@workspace:packages/config"
   dependencies:
-    dotenv: ^12.0.4
+    dotenv: ^14.2.0
     env-var: ^7.1.1
     findup-sync: ^5.0.0
   languageName: unknown
@@ -68,7 +70,7 @@ __metadata:
     form-data: ^4.0.0
     ioredis: ^4.28.3
     mailgun.js: ^4.1.4
-    nanoid: ^3.1.32
+    nanoid: ^3.2.0
     pino: ^7.6.3
   languageName: unknown
   linkType: soft
@@ -1128,29 +1130,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@windicss/config@npm:1.6.2":
-  version: 1.6.2
-  resolution: "@windicss/config@npm:1.6.2"
+"@windicss/config@npm:1.6.3":
+  version: 1.6.3
+  resolution: "@windicss/config@npm:1.6.3"
   dependencies:
     debug: ^4.3.3
     jiti: ^1.12.9
-    windicss: ^3.4.2
-  checksum: 120695da96f7957f290eba94eed9cdb71dc79e8c9b5a3faf035e0547980c105cd7283220a0575f4d7d41a58892b0c874ad733228b3a8427a21a7e2db84159d33
+    windicss: ^3.4.3
+  checksum: 987ae75e56add48278a9debfd2d6640af6cdbc1b549d1d35907961dcd8d1858e78c5f85dae4317e2abec62c1b9f65418914ffea6f464de63384573c0d0a1efe5
   languageName: node
   linkType: hard
 
-"@windicss/plugin-utils@npm:1.6.2":
-  version: 1.6.2
-  resolution: "@windicss/plugin-utils@npm:1.6.2"
+"@windicss/plugin-utils@npm:1.6.3":
+  version: 1.6.3
+  resolution: "@windicss/plugin-utils@npm:1.6.3"
   dependencies:
     "@antfu/utils": ^0.4.0
-    "@windicss/config": 1.6.2
+    "@windicss/config": 1.6.3
     debug: ^4.3.3
-    fast-glob: ^3.2.10
+    fast-glob: ^3.2.11
     magic-string: ^0.25.7
     micromatch: ^4.0.4
-    windicss: ^3.4.2
-  checksum: b99eda6b6b74a29afd978147b9622c808b5cb292d53c82fc08421d347b842cf8795389a3df70e2455db738780301a36626b0fa1efb417591c7b03ebba90aa28b
+    windicss: ^3.4.3
+  checksum: f2b6907f17df4cd0a766985b7c14ccbc61895530df7b0319bd1bcaeb3a3a12d21cf26dbc5202966fe70fa4eb5a0f1e030caf80b826d5a4aa7bd94796bef54355
   languageName: node
   linkType: hard
 
@@ -2167,17 +2169,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^12.0.3":
-  version: 12.0.3
-  resolution: "dotenv@npm:12.0.3"
-  checksum: 06c851c7291303783ccf1ba6a9b4937dcadeaedc8ba34258f2d0c18566c45399b0bdc28973a5b685f7489578a09c753041d9f62bf4b983379af8059e442a9f64
-  languageName: node
-  linkType: hard
-
-"dotenv@npm:^12.0.4":
-  version: 12.0.4
-  resolution: "dotenv@npm:12.0.4"
-  checksum: d79a69fae72b5c5785906600ce42388b48bf7ab20bbac8346bac327cc87a68617a09b1b3cd39965210f011ab07ea4641d5952d46f67f4e40a66b9ad76cf456c0
+"dotenv@npm:^14.2.0":
+  version: 14.2.0
+  resolution: "dotenv@npm:14.2.0"
+  checksum: 85a0e44918ef49e64c278f757dab50a156b9a6ca67f708876fd81d265e575e35b67387fc681d910df99368d6c1edca66cd546edeb0f7db3b499cb876c999233e
   languageName: node
   linkType: hard
 
@@ -2876,7 +2871,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:^3.2.10, fast-glob@npm:^3.2.9":
+"fast-glob@npm:^3.2.10, fast-glob@npm:^3.2.11, fast-glob@npm:^3.2.9":
   version: 3.2.11
   resolution: "fast-glob@npm:3.2.11"
   dependencies:
@@ -3082,7 +3077,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fetch-blob@npm:^3.1.2":
+"fetch-blob@npm:^3.1.2, fetch-blob@npm:^3.1.3":
   version: 3.1.3
   resolution: "fetch-blob@npm:3.1.3"
   dependencies:
@@ -3527,7 +3522,7 @@ __metadata:
     argon2: ^0.28.3
     date-fns: ^2.28.0
     directory-import: ^2.3.1
-    dotenv: ^12.0.3
+    dotenv: ^14.2.0
     env-var: ^7.1.1
     fast-jwt: ^1.4.1
     fastify: ^3.25.3
@@ -4811,12 +4806,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.1.30, nanoid@npm:^3.1.32":
+"nanoid@npm:^3.1.30":
   version: 3.1.32
   resolution: "nanoid@npm:3.1.32"
   bin:
     nanoid: bin/nanoid.cjs
   checksum: 7389375c7d9819609366cc7b2bd446c854762617a626d345e5dcdc6629f6571e071c7ba412920148065dbd939dbc5589f9e2734b244c3cb49bbddc96082adcc1
+  languageName: node
+  linkType: hard
+
+"nanoid@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "nanoid@npm:3.2.0"
+  bin:
+    nanoid: bin/nanoid.cjs
+  checksum: 3d1d5a69fea84e538057cf64106e713931c4ef32af344068ecff153ff91252f39b0f2b472e09b0dfff43ac3cf520c92938d90e6455121fe93976e23660f4fccc
   languageName: node
   linkType: hard
 
@@ -4885,14 +4889,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "node-fetch@npm:3.1.0"
+"node-fetch@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "node-fetch@npm:3.1.1"
   dependencies:
     data-uri-to-buffer: ^4.0.0
-    fetch-blob: ^3.1.2
+    fetch-blob: ^3.1.3
     formdata-polyfill: ^4.0.10
-  checksum: 23b5977554d21b72d7d99145d00bcf06e463fa621bf0afc276ad121a79509a133f38c7e470b34aad45d4032d3315bf5584ff6a1cb83e8f01be7a44cc7ac72693
+  checksum: 2e03f9a309a0a3e20758045e5eea5f1a0961be236f01cf9caecfd2224a1388a59a5c7fa3809d16f76cce1b5b7411a61db146fd265b7af5a6c9e5920a18eeef63
   languageName: node
   linkType: hard
 
@@ -7112,21 +7116,36 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-windicss@npm:^1.6.2":
-  version: 1.6.2
-  resolution: "vite-plugin-windicss@npm:1.6.2"
+"vite-plugin-solid@npm:^2.2.3":
+  version: 2.2.3
+  resolution: "vite-plugin-solid@npm:2.2.3"
   dependencies:
-    "@windicss/plugin-utils": 1.6.2
-    debug: ^4.3.3
-    kolorist: ^1.5.1
-    windicss: ^3.4.2
-  peerDependencies:
-    vite: ^2.0.1
-  checksum: 4d61365b5326383e5d68927d6efdeb7f8cabff7106cda5e7873c8dfa75b9e9cb3f38c10e1b4a7e76a0a935e977349c5f6a1b5d9ea374df27fda1e7f0b0ce5108
+    "@babel/core": ^7.16.7
+    "@babel/preset-typescript": ^7.16.7
+    babel-preset-solid: ^1.3.0
+    merge-anything: ^4.0.2
+    solid-js: ^1.3.0
+    solid-refresh: ^0.4.0
+    vite: ^2.7.10
+  checksum: 290bffe42b1ad64eebb831c82b3067bdc4777ed3b2fe56c22285959957136dcd6e225073b0c90dc63a14d1af81ac7d0ffc8f2b0dedf21832ce58edffeac1feca
   languageName: node
   linkType: hard
 
-"vite@npm:^2.7.10, vite@npm:^2.7.11":
+"vite-plugin-windicss@npm:^1.6.3":
+  version: 1.6.3
+  resolution: "vite-plugin-windicss@npm:1.6.3"
+  dependencies:
+    "@windicss/plugin-utils": 1.6.3
+    debug: ^4.3.3
+    kolorist: ^1.5.1
+    windicss: ^3.4.3
+  peerDependencies:
+    vite: ^2.0.1
+  checksum: 841a4113c0939586bf548311ea737bb3a2d02416c7007084c5518a8af7824e56efba82941b3b5088ece252481ad1178d85c559f06187b696e296566b59252f29
+  languageName: node
+  linkType: hard
+
+"vite@npm:^2.7.10, vite@npm:^2.7.12":
   version: 2.7.12
   resolution: "vite@npm:2.7.12"
   dependencies:
@@ -7169,17 +7188,17 @@ __metadata:
     "@aviarymail/config": "workspace:*"
     "@felte/solid": ^0.3.0
     "@felte/validator-zod": ^0.3.8
-    node-fetch: ^2.6.6
+    node-fetch: ^3.1.1
     solid-app-router: ^0.2.1
     solid-js: ^1.3.3
     solid-meta: ^0.27.3
     solid-start: next
     solid-start-node: next
     typescript: ^4.5.4
-    vite: ^2.7.11
-    vite-plugin-solid: ^2.2.1
-    vite-plugin-windicss: ^1.6.2
-    windicss: ^3.4.2
+    vite: ^2.7.12
+    vite-plugin-solid: ^2.2.3
+    vite-plugin-windicss: ^1.6.3
+    windicss: ^3.4.3
     zod: ^3.11.6
   languageName: unknown
   linkType: soft
@@ -7271,12 +7290,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"windicss@npm:^3.4.2":
-  version: 3.4.2
-  resolution: "windicss@npm:3.4.2"
+"windicss@npm:^3.4.3":
+  version: 3.4.3
+  resolution: "windicss@npm:3.4.3"
   bin:
     windicss: cli/index.js
-  checksum: 74f90e08a725602f5900dbd8318aba3fed1bf0acfc057095e81194d25d61cd1df16cf2ccf507d13450bc1524e7c18838e6aac25b376e795f2db8b30e206cc362
+  checksum: 3029c69249a1f5676ce2b4a991830bf0f86f47098ff1d6fa78668cd165e0388800c8edf479fd3209deefa5b027de50fdc10f02f6ec0de0af55db1afdaf5df7f2
   languageName: node
   linkType: hard
 
