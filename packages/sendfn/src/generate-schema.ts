@@ -103,7 +103,12 @@ function _parse(tokens: string[]) {
     }
 
     // These tags have no structural effect on the schema.
-    if (token === 'else' || token.startsWith('/') || token.startsWith('! ')) {
+    if (
+      token === 'else' ||
+      token.startsWith('/') ||
+      token.startsWith('! ') ||
+      token.startsWith('@')
+    ) {
       continue;
     }
 

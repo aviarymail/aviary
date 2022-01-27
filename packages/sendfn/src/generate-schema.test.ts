@@ -129,6 +129,8 @@ describe('generate-schema', () => {
         {{#if account.user.contact}}
           {{account.user.contact.email}}
         {{/if}}
+      {{else}}
+        {{account.status}}
       {{/if}}
     `);
 
@@ -150,6 +152,9 @@ describe('generate-schema', () => {
               },
             },
           },
+          properties: {
+            status: {},
+          },
         },
       },
     });
@@ -168,6 +173,8 @@ describe('generate-schema', () => {
         {{#unless user.contact.email}}
           {{user.contact.email}}
         {{/unless}}
+      {{else}}
+        {{organization}}
       {{/unless}}
     `);
 
@@ -186,6 +193,9 @@ describe('generate-schema', () => {
             name: {},
           },
         },
+      },
+      properties: {
+        organization: {},
       },
     });
   });
