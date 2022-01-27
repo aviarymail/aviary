@@ -5,7 +5,7 @@ export function errorFormatter(err: any, ctx: any) {
   let errors = [{ message: err.message }];
 
   if (err.errors) {
-    errors = err.errors.map((error: any, idx: any) => {
+    errors = err.errors.map((error: any) => {
       let err: Record<string, any> = error;
 
       if (error instanceof GraphQLError) {

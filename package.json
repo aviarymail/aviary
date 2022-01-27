@@ -17,16 +17,21 @@
     "cli": "yarn workspace @aviarymail/cli",
     "client": "yarn workspace @aviarymail/client",
     "db": "yarn workspace @aviarymail/db",
+    "sendfn": "yarn workspace @aviarymail/sendfn",
     "services": "yarn workspace @aviarymail/services"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.178",
     "prettier": "^2.5.1",
-    "rollup": "^2.64.0",
+    "rollup": "^2.66.1",
     "rollup-preset-solid": "^1.1.0",
-    "turbo": "^1.0.28"
+    "turbo": "^1.0.28",
+    "type-fest": "^2.10.0",
+    "typescript": "^4.5.5",
+    "vitest": "^0.2.3"
   },
   "resolutions": {
-    "solid-start-node": "0.1.0-alpha.54"
+    "solid-start-node": "0.1.0-alpha.55"
   },
   "turbo": {
     "pipeline": {

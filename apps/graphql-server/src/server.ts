@@ -1,8 +1,7 @@
 import { db } from '@aviarymail/db';
-import { utils } from '@aviarymail/services';
-import fastify from 'fastify';
+import { redis, logger } from '@aviarymail/services';
+import fastify, { FastifyInstance } from 'fastify';
 import cookie from 'fastify-cookie';
-import secureSession from 'fastify-secure-session';
 import cors from 'fastify-cors';
 import mercurius from 'mercurius';
 import { Config } from './lib/config';
@@ -12,9 +11,9 @@ import { schema } from './schema';
 import { context } from './schema/context';
 import { errorFormatter } from './schema/lib/error-formatter';
 
-export function createServer() {
+export function createServer(): FastifyInstance {
   const server = fastify({
-    logger: true,
+    logger,
   });
 
   server.register(cors, {
@@ -40,7 +39,7 @@ export function createServer() {
 
   server.addHook('onClose', async () => {
     await db.$disconnect();
-    await utils.redis.quit();
+    await redis.quit();
   });
 
   return server;

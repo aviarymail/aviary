@@ -1,16 +1,16 @@
 import { createForm } from '@felte/solid';
 import { validator, ValidatorConfig } from '@felte/validator-zod';
 import { Title } from 'solid-meta';
-import { z } from 'zod';
+import { object, string, TypeOf } from 'zod';
 import { Button } from '~/components/atoms/button';
 import { TextInput } from '~/components/atoms/text-input';
 
-const schema = z.object({
-  email: z.string().min(1, 'Email is required').email(),
+const schema = object({
+  email: string().min(1, 'Email is required').email(),
 });
 
 export default function Login() {
-  const { form, errors, isValid } = createForm<z.infer<typeof schema>, ValidatorConfig>({
+  const { form, errors, isValid } = createForm<TypeOf<typeof schema>, ValidatorConfig>({
     extend: validator,
     validateSchema: schema,
     onSubmit(values) {
