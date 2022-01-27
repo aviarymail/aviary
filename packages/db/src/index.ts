@@ -1,5 +1,5 @@
 export * from '@prisma/client';
-export type { default as GiraphqlPrismaTypes } from '@giraphql/plugin-prisma/generated';
+export type { default as PothosPrismaTypes } from '@pothos/plugin-prisma/generated';
 
 import { PrismaClient } from '@prisma/client';
 

@@ -1,7 +1,7 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 import { SocketStream } from 'fastify-websocket';
 import { PubSub } from 'mercurius';
-import { GiraphqlPrismaTypes } from '@aviarymail/db';
+import { PothosPrismaTypes } from '@aviarymail/db';
 
 export interface ISchemaBuilder {
   Scalars: {
@@ -34,7 +34,7 @@ export interface ISchemaBuilder {
     loggedIn: boolean;
   };
 
-  PrismaTypes: GiraphqlPrismaTypes;
+  PrismaTypes: PothosPrismaTypes;
 
   DefaultInputFieldRequiredness: true;
 }

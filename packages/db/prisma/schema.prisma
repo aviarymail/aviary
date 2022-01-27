@@ -14,8 +14,8 @@ datasource db {
   referentialIntegrity = "prisma"
 }
 
-generator giraphql {
-  provider = "prisma-giraphql-types"
+generator pothos {
+  provider = "prisma-pothos-types"
 }
 
 // ======================

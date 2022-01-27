@@ -48,7 +48,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aviarymail/db@workspace:packages/db"
   dependencies:
-    "@giraphql/plugin-prisma": ^0.14.0
+    "@pothos/plugin-prisma": ^0.16.0
     "@prisma/client": ^3.8.1
     graphql: ^16.2.0
     prisma: ^3.8.1
@@ -507,49 +507,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@giraphql/core@npm:^2.23.0":
-  version: 2.23.0
-  resolution: "@giraphql/core@npm:2.23.0"
-  peerDependencies:
-    graphql: ">=15.1.0"
-  checksum: 7ca770ed97b946337dd735ae418a780d9d8092d200109e2ed75da298d47ffc3d6352eda6c041e4303410e7f90f63545c5a141371d685f0ae19adec13b6f21c5c
-  languageName: node
-  linkType: hard
-
-"@giraphql/plugin-prisma@npm:^0.14.0":
-  version: 0.14.0
-  resolution: "@giraphql/plugin-prisma@npm:0.14.0"
-  dependencies:
-    "@prisma/generator-helper": ^3.6.0
-  peerDependencies:
-    "@prisma/client": "*"
-    graphql: ">=15.1.0"
-    typescript: ">4.5.2"
-  bin:
-    prisma-giraphql-types: bin/generator.js
-  checksum: b4064502a3d1f3387ad72cb6474be11fba9bbe016f59a425edc88dba41ec62760586cbfb9839021e9f5dd122ce145b365b7cf162721aafa95a066fa87243b6d2
-  languageName: node
-  linkType: hard
-
-"@giraphql/plugin-scope-auth@npm:^2.15.0":
-  version: 2.15.0
-  resolution: "@giraphql/plugin-scope-auth@npm:2.15.0"
-  peerDependencies:
-    graphql: ">=15.1.0"
-  checksum: 84e0084683e7bcd73acb757d5b2b41ab333a292223badcf01ce253abdceca795ee4a4b04e4cf7dc52aa0388137f6855e99d384c1cf873ab17878fb929cdb4995
-  languageName: node
-  linkType: hard
-
-"@giraphql/plugin-validation@npm:^2.16.0":
-  version: 2.16.0
-  resolution: "@giraphql/plugin-validation@npm:2.16.0"
-  peerDependencies:
-    graphql: ">=15.1.0"
-    zod: "*"
-  checksum: a2cb388d28cb426ca0f820bd088e83c2530188d3a76df8436ade0b46ae7466cb574aeb46d7106ca2f9a80b3a1b3d176fd8a92e07f165a06e7acd654ae6245bbd
-  languageName: node
-  linkType: hard
-
 "@graphql-typed-document-node/core@npm:3.1.0":
   version: 3.1.0
   resolution: "@graphql-typed-document-node/core@npm:3.1.0"
@@ -639,6 +596,49 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@pothos/core@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@pothos/core@npm:3.0.1"
+  peerDependencies:
+    graphql: ">=15.1.0"
+  checksum: 891314feb29c4c050de8fe0e2961953833a76749c917c5055d5877c490146744918accc6be81f6a67908a470399fb43b906eec36670077a53d5d9fe60e01d605
+  languageName: node
+  linkType: hard
+
+"@pothos/plugin-prisma@npm:^0.16.0":
+  version: 0.16.0
+  resolution: "@pothos/plugin-prisma@npm:0.16.0"
+  dependencies:
+    "@prisma/generator-helper": ^3.8.1
+  peerDependencies:
+    "@prisma/client": "*"
+    graphql: ">=15.1.0"
+    typescript: ">4.5.2"
+  bin:
+    prisma-pothos-types: bin/generator.js
+  checksum: 2e99ab7ed8b623a5f09fb135e0d42c74238746f07b29a64221319e7797e06a1af9b3c650e664c6ae5fb553ff7d81b9486021e9ff806fcb70ea5da65a123b8b74
+  languageName: node
+  linkType: hard
+
+"@pothos/plugin-scope-auth@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@pothos/plugin-scope-auth@npm:3.0.0"
+  peerDependencies:
+    graphql: ">=15.1.0"
+  checksum: e0ca6aea4e178e1c5dbcceab5dd50bd982c22995b089a536d8450cad993f96bce5216288b6d1cd7ead93822a67fe9da0ae031381acfe306983fb63d20538c06a
+  languageName: node
+  linkType: hard
+
+"@pothos/plugin-validation@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@pothos/plugin-validation@npm:3.0.0"
+  peerDependencies:
+    graphql: ">=15.1.0"
+    zod: "*"
+  checksum: 0e13ab409ca4f3d8fc989bd9cdaca71fafb1f61fef46a60dcc532ab64a939940ce2154cecb2fcbf57f64a9c88404f08bb673833065ab4228828a20690b298230
+  languageName: node
+  linkType: hard
+
 "@prisma/client@npm:^3.8.1":
   version: 3.8.1
   resolution: "@prisma/client@npm:3.8.1"
@@ -678,7 +678,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/generator-helper@npm:^3.6.0":
+"@prisma/generator-helper@npm:^3.8.1":
   version: 3.8.1
   resolution: "@prisma/generator-helper@npm:3.8.1"
   dependencies:
@@ -3470,10 +3470,10 @@ __metadata:
     "@aviarymail/config": "workspace:*"
     "@aviarymail/db": "workspace:*"
     "@aviarymail/services": "workspace:*"
-    "@giraphql/core": ^2.23.0
-    "@giraphql/plugin-prisma": ^0.14.0
-    "@giraphql/plugin-scope-auth": ^2.15.0
-    "@giraphql/plugin-validation": ^2.16.0
+    "@pothos/core": ^3.0.1
+    "@pothos/plugin-prisma": ^0.16.0
+    "@pothos/plugin-scope-auth": ^3.0.0
+    "@pothos/plugin-validation": ^3.0.0
     "@types/findup-sync": ^4.0.2
     "@types/graphql": ^14.5.0
     argon2: ^0.28.3

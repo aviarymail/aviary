@@ -1,8 +1,8 @@
-// https://giraphql.com/
-import SchemaBuilder from '@giraphql/core';
-import ScopeAuthPlugin from '@giraphql/plugin-scope-auth';
-import PrismaPlugin from '@giraphql/plugin-prisma';
-import ValidationPlugin from '@giraphql/plugin-validation';
+// https://pothos-graphql.dev/
+import SchemaBuilder from '@pothos/core';
+import ScopeAuthPlugin from '@pothos/plugin-scope-auth';
+import PrismaPlugin from '@pothos/plugin-prisma';
+import ValidationPlugin from '@pothos/plugin-validation';
 import { db } from '@aviarymail/db';
 
 import { ISchemaBuilder } from './schema-builder.interface';
