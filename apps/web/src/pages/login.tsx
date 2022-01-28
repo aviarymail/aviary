@@ -1,18 +1,19 @@
-import { createForm } from '@felte/solid';
-import { validator, ValidatorConfig } from '@felte/validator-zod';
 import { Title } from 'solid-meta';
-import { object, string, TypeOf } from 'zod';
+import { object, output, string } from 'zod';
 import { Button } from '~/components/atoms/button';
 import { TextInput } from '~/components/atoms/text-input';
+import { createForm } from '~/hooks/create-form';
 
 const schema = object({
   email: string().min(1, 'Email is required').email(),
 });
 
 export default function Login() {
-  const { form, errors, isValid } = createForm<TypeOf<typeof schema>, ValidatorConfig>({
-    extend: validator,
-    validateSchema: schema,
+  const { handleSubmit, bindInput, state } = createForm<output<typeof schema>>({
+    schema,
+    intitialValues: {
+      email: '',
+    },
     onSubmit(values) {
       console.log(values);
     },
@@ -23,16 +24,22 @@ export default function Login() {
       <Title>Login | Aviary Mail</Title>
 
       <main class="m-auto max-w-xs w-full pb-40">
-        <form use:form>
+        <form onSubmit={handleSubmit}>
           <TextInput
             name="email"
             label="Email Address"
             placeholder="you@email.com"
-            error={errors.email}
+            {...bindInput('email')}
           />
 
           <div class="flex mt-3">
-            <Button variant="primary" type="submit" class="w-full" disabled={!isValid()}>
+            <Button
+              variant="primary"
+              type="submit"
+              className="w-full"
+              disabled={!state.valid}
+              loading={state.loading}
+            >
               Login
             </Button>
           </div>

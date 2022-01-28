@@ -3,24 +3,27 @@
   "scripts": {
     "start": "solid-start dev",
     "build": "solid-start build",
-    "serve": "solid-start start"
+    "serve": "PORT=8080 solid-start start"
   },
   "type": "module",
   "dependencies": {
     "@felte/solid": "^0.3.0",
     "@felte/validator-zod": "^0.3.8",
+    "@urql/core": "^2.3.6",
+    "graphql": "npm:graphql-web-lite@^16.1.1000",
     "node-fetch": "^3.2.0",
     "solid-app-router": "^0.2.1",
-    "solid-js": "^1.3.3",
+    "solid-js": "^1.3.4",
     "solid-meta": "^0.27.3",
     "solid-start": "next",
     "solid-start-node": "next",
+    "solid-urql": "^0.1.0",
     "zod": "^3.11.6"
   },
   "devDependencies": {
     "@aviarymail/config": "workspace:*",
     "vite": "^2.7.13",
-    "vite-plugin-solid": "^2.2.4",
+    "vite-plugin-solid": "^2.2.5",
     "vite-plugin-windicss": "^1.6.3",
     "windicss": "^3.4.3"
   },

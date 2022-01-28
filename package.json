@@ -4,20 +4,16 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "clean": "yarn clean:dist && yarn clean:node_modules",
-    "clean:dist": "find . -name \"dist\" -exec rm -rf '{}' +",
-    "clean:node_modules": "find . -name \"node_modules\" -exec rm -rf '{}' +",
-    "build": "turbo run build",
-    "start": "turbo run start --parallel",
-    "lint": "turbo run lint",
+    "clean": "./scripts/clean.sh",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "start": "turbo run start",
     "fns": "yarn workspace fns",
     "web": "yarn workspace web",
     "graphql-server": "yarn workspace graphql-server",
     "cli": "yarn workspace @aviarymail/cli",
     "client": "yarn workspace @aviarymail/client",
     "db": "yarn workspace @aviarymail/db",
-    "sendfn": "yarn workspace @aviarymail/sendfn",
+    "typestache": "yarn workspace @aviarymail/typestache",
     "services": "yarn workspace @aviarymail/services"
   },
   "devDependencies": {
@@ -25,12 +21,13 @@
     "prettier": "^2.5.1",
     "rollup": "^2.66.1",
     "rollup-preset-solid": "^1.1.0",
-    "turbo": "^1.0.28",
-    "type-fest": "^2.10.0",
+    "turbo": "^1.1.1",
+    "type-fest": "^2.11.0",
     "typescript": "^4.5.5",
-    "vitest": "^0.2.3"
+    "vitest": "^0.2.5"
   },
   "resolutions": {
+    "node-fetch": "^2.6.1",
     "solid-start-node": "0.1.0-alpha.55"
   },
   "turbo": {

@@ -14,9 +14,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aviarymail/cli@workspace:packages/cli":
+"@aviarymail/cli@workspace:packages/sendfn":
   version: 0.0.0-use.local
-  resolution: "@aviarymail/cli@workspace:packages/cli"
+  resolution: "@aviarymail/cli@workspace:packages/sendfn"
   dependencies:
     "@aviarymail/client": "workspace:*"
     "@aviarymail/config": "workspace:*"
@@ -34,53 +34,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@aviarymail/config@workspace:*, @aviarymail/config@workspace:packages/config":
+"@aviarymail/typestache@workspace:packages/typestache":
   version: 0.0.0-use.local
-  resolution: "@aviarymail/config@workspace:packages/config"
-  dependencies:
-    dotenv: ^14.3.2
-    env-var: ^7.1.1
-    findup-sync: ^5.0.0
-  languageName: unknown
-  linkType: soft
-
-"@aviarymail/db@workspace:*, @aviarymail/db@workspace:packages/db":
-  version: 0.0.0-use.local
-  resolution: "@aviarymail/db@workspace:packages/db"
-  dependencies:
-    "@pothos/plugin-prisma": ^0.16.0
-    "@prisma/client": ^3.8.1
-    graphql: ^16.2.0
-    prisma: ^3.8.1
-    tasuku: ^1.0.2
-  languageName: unknown
-  linkType: soft
-
-"@aviarymail/sendfn@workspace:packages/sendfn":
-  version: 0.0.0-use.local
-  resolution: "@aviarymail/sendfn@workspace:packages/sendfn"
+  resolution: "@aviarymail/typestache@workspace:packages/typestache"
   dependencies:
     "@types/lodash": ^4.14.178
     jtd: ^0.1.1
     lodash: ^4.17.21
     typescript: ^4.5.5
-    vitest: ^0.2.3
-  languageName: unknown
-  linkType: soft
-
-"@aviarymail/services@workspace:*, @aviarymail/services@workspace:packages/services":
-  version: 0.0.0-use.local
-  resolution: "@aviarymail/services@workspace:packages/services"
-  dependencies:
-    "@aviarymail/config": "workspace:*"
-    "@aviarymail/db": "workspace:*"
-    "@types/ioredis": ^4.28.7
-    form-data: ^4.0.0
-    ioredis: ^4.28.3
-    mailgun.js: ^4.1.6
-    nanoid: ^3.2.0
-    pino: ^7.6.4
-    pino-pretty: ^7.5.0
+    vitest: ^0.2.5
   languageName: unknown
   linkType: soft
 
@@ -100,7 +62,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.16.7":
+"@babel/core@npm:^7.16.12, @babel/core@npm:^7.16.7":
   version: 7.16.12
   resolution: "@babel/core@npm:7.16.12"
   dependencies:
@@ -516,6 +478,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-typed-document-node/core@npm:^3.1.0":
+  version: 3.1.1
+  resolution: "@graphql-typed-document-node/core@npm:3.1.1"
+  peerDependencies:
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 87ff4cee308f1075f4472b80f9f9409667979940f8f701e87f0aa35ce5cf104d94b41258ea8192d05a0893475cd0f086a3929a07663b4fe8d0e805a277f07ed5
+  languageName: node
+  linkType: hard
+
 "@mapbox/node-pre-gyp@npm:^1.0.7":
   version: 1.0.8
   resolution: "@mapbox/node-pre-gyp@npm:1.0.8"
@@ -596,18 +567,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pothos/core@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@pothos/core@npm:3.0.1"
+"@pothos/core@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "@pothos/core@npm:3.1.0"
   peerDependencies:
     graphql: ">=15.1.0"
-  checksum: 891314feb29c4c050de8fe0e2961953833a76749c917c5055d5877c490146744918accc6be81f6a67908a470399fb43b906eec36670077a53d5d9fe60e01d605
+  checksum: d1fab0ffd1be5b0271e800dc1930cd187eb0f4dbf278249394c37c6cb1d86940f29f0482f21c36fef927576127721786b8a6aaa812ddd3e69215ef5dc0072513
   languageName: node
   linkType: hard
 
-"@pothos/plugin-prisma@npm:^0.16.0":
-  version: 0.16.0
-  resolution: "@pothos/plugin-prisma@npm:0.16.0"
+"@pothos/plugin-prisma@npm:^0.16.1":
+  version: 0.16.1
+  resolution: "@pothos/plugin-prisma@npm:0.16.1"
   dependencies:
     "@prisma/generator-helper": ^3.8.1
   peerDependencies:
@@ -616,7 +587,7 @@ __metadata:
     typescript: ">4.5.2"
   bin:
     prisma-pothos-types: bin/generator.js
-  checksum: 2e99ab7ed8b623a5f09fb135e0d42c74238746f07b29a64221319e7797e06a1af9b3c650e664c6ae5fb553ff7d81b9486021e9ff806fcb70ea5da65a123b8b74
+  checksum: 77b2525009772c93204532ed933256fa3d91699949a3df48fcb8d1aafba56c64691b80351394daf2f1a3edb66615ec788e1b8817a7821cba092e31b8d77eb508
   languageName: node
   linkType: hard
 
@@ -773,6 +744,44 @@ __metadata:
   checksum: 498d67e7b48c707e3e0d9f7ddaa405833d77575b2d9607cd1914be40455ed534235e0512f9d046bf0e4ed1740e7816fd32ab1c673195e897c4fa180bcbfd7283
   languageName: node
   linkType: hard
+
+"@aviarymail/config@workspace:*, @aviarymail/config@workspace:packages/config":
+  version: 0.0.0-use.local
+  resolution: "@aviarymail/config@workspace:packages/config"
+  dependencies:
+    dotenv: ^14.3.2
+    env-var: ^7.1.1
+    findup-sync: ^5.0.0
+  languageName: unknown
+  linkType: soft
+
+"@aviarymail/db@workspace:*, @aviarymail/db@workspace:packages/db":
+  version: 0.0.0-use.local
+  resolution: "@aviarymail/db@workspace:packages/db"
+  dependencies:
+    "@pothos/plugin-prisma": ^0.16.1
+    "@prisma/client": ^3.8.1
+    graphql: ^16.3.0
+    prisma: ^3.8.1
+    tasuku: ^1.0.2
+  languageName: unknown
+  linkType: soft
+
+"@aviarymail/services@workspace:*, @aviarymail/services@workspace:packages/services":
+  version: 0.0.0-use.local
+  resolution: "@aviarymail/services@workspace:packages/services"
+  dependencies:
+    "@aviarymail/config": "workspace:*"
+    "@aviarymail/db": "workspace:*"
+    "@types/ioredis": ^4.28.7
+    form-data: ^4.0.0
+    ioredis: ^4.28.3
+    mailgun.js: ^4.1.6
+    nanoid: ^3.2.0
+    pino: ^7.6.4
+    pino-pretty: ^7.5.1
+  languageName: unknown
+  linkType: soft
 
 "@sindresorhus/is@npm:^0.14.0":
   version: 0.14.0
@@ -970,6 +979,18 @@ __metadata:
   version: 1.9.2
   resolution: "@types/yoga-layout@npm:1.9.2"
   checksum: dbc3d6ab997d50fe1fcca5dd6822982c8fe586145ab648e0e97c3bc4ebc93d0b40c9edd75febaba374d61f60c1379b639f6be652965c776a901bf1068f2eac87
+  languageName: node
+  linkType: hard
+
+"@urql/core@npm:^2.3.6":
+  version: 2.3.6
+  resolution: "@urql/core@npm:2.3.6"
+  dependencies:
+    "@graphql-typed-document-node/core": ^3.1.0
+    wonka: ^4.0.14
+  peerDependencies:
+    graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 39b10abc9b600cf698bc702b9b678cf8cf4851faa8041be6fe26e439a18a447f8f39049cd2a9b188076cbd272ead62286ea05294c5de14719e7799caa8c44942
   languageName: node
   linkType: hard
 
@@ -1316,10 +1337,10 @@ __metadata:
     prettier: ^2.5.1
     rollup: ^2.66.1
     rollup-preset-solid: ^1.1.0
-    turbo: ^1.0.28
-    type-fest: ^2.10.0
+    turbo: ^1.1.1
+    type-fest: ^2.11.0
     typescript: ^4.5.5
-    vitest: ^0.2.3
+    vitest: ^0.2.5
   languageName: unknown
   linkType: soft
 
@@ -1569,17 +1590,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chai@npm:^4.3.4":
-  version: 4.3.4
-  resolution: "chai@npm:4.3.4"
+"chai@npm:^4.3.6":
+  version: 4.3.6
+  resolution: "chai@npm:4.3.6"
   dependencies:
     assertion-error: ^1.1.0
     check-error: ^1.0.2
     deep-eql: ^3.0.1
     get-func-name: ^2.0.0
+    loupe: ^2.3.1
     pathval: ^1.1.1
     type-detect: ^4.0.5
-  checksum: 772c522b3bfe3fcf0e0e74edfe584cd886b0e85a73126dec750095300e023d4e1ec6d40e3c35a80d2bd8f33dca46c42767a36f5f50f32dca6fa31c88b5f49ab8
+  checksum: acff93fd537f96d4a4d62dd83810285dffcfccb5089e1bf2a1205b28ec82d93dff551368722893cf85004282df10ee68802737c33c90c5493957ed449ed7ce71
   languageName: node
   linkType: hard
 
@@ -1914,20 +1936,6 @@ __metadata:
   version: 2.0.0
   resolution: "crypto-random-string@npm:2.0.0"
   checksum: 0283879f55e7c16fdceacc181f87a0a65c53bc16ffe1d58b9d19a6277adcd71900d02bb2c4843dd55e78c51e30e89b0fec618a7f170ebcc95b33182c28f05fd6
-  languageName: node
-  linkType: hard
-
-"data-uri-to-buffer@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "data-uri-to-buffer@npm:3.0.1"
-  checksum: c59c3009686a78c071806b72f4810856ec28222f0f4e252aa495ec027ed9732298ceea99c50328cf59b151dd34cbc3ad6150bbb43e41fc56fa19f48c99e9fc30
-  languageName: node
-  linkType: hard
-
-"data-uri-to-buffer@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "data-uri-to-buffer@npm:4.0.0"
-  checksum: a010653869abe8bb51259432894ac62c52bf79ad761d418d94396f48c346f2ae739c46b254e8bb5987bded8a653d467db1968db3a69bab1d33aa5567baa5cfc7
   languageName: node
   linkType: hard
 
@@ -3016,26 +3024,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fetch-blob@npm:^2.1.1":
-  version: 2.1.2
-  resolution: "fetch-blob@npm:2.1.2"
-  peerDependenciesMeta:
-    domexception:
-      optional: true
-  checksum: 22d4487ce78ea4e52b432b0057d8d42922d5d93c0374b0bc2692cebdcb11bf8fac4f6d141b31f1633db1e9212effd38385adbd765a2c7412a621307058499214
-  languageName: node
-  linkType: hard
-
-"fetch-blob@npm:^3.1.2, fetch-blob@npm:^3.1.4":
-  version: 3.1.4
-  resolution: "fetch-blob@npm:3.1.4"
-  dependencies:
-    node-domexception: ^1.0.0
-    web-streams-polyfill: ^3.0.3
-  checksum: 81b074f38a2dbfd546dd58e482cefe14e605abd609e272804bf089d588d84f39e3e95b35640bfb376f71d5038c123d4d41be49d9cdf87e5ec8939d37738df0b6
-  languageName: node
-  linkType: hard
-
 "fill-range@npm:^7.0.1":
   version: 7.0.1
   resolution: "fill-range@npm:7.0.1"
@@ -3095,15 +3083,6 @@ __metadata:
     combined-stream: ^1.0.8
     mime-types: ^2.1.12
   checksum: 01135bf8675f9d5c61ff18e2e2932f719ca4de964e3be90ef4c36aacfc7b9cb2fceb5eca0b7e0190e3383fe51c5b37f4cb80b62ca06a99aaabfcfd6ac7c9328c
-  languageName: node
-  linkType: hard
-
-"formdata-polyfill@npm:^4.0.10":
-  version: 4.0.10
-  resolution: "formdata-polyfill@npm:4.0.10"
-  dependencies:
-    fetch-blob: ^3.1.2
-  checksum: 82a34df292afadd82b43d4a740ce387bc08541e0a534358425193017bf9fb3567875dc5f69564984b1da979979b70703aa73dee715a17b6c229752ae736dd9db
   languageName: node
   linkType: hard
 
@@ -3467,13 +3446,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "graphql-server@workspace:apps/graphql-server"
   dependencies:
+    "@pothos/core": ^3.1.0
+    "@pothos/plugin-prisma": ^0.16.1
+    "@pothos/plugin-scope-auth": ^3.0.0
+    "@pothos/plugin-validation": ^3.0.0
     "@aviarymail/config": "workspace:*"
     "@aviarymail/db": "workspace:*"
     "@aviarymail/services": "workspace:*"
-    "@pothos/core": ^3.0.1
-    "@pothos/plugin-prisma": ^0.16.0
-    "@pothos/plugin-scope-auth": ^3.0.0
-    "@pothos/plugin-validation": ^3.0.0
     "@types/findup-sync": ^4.0.2
     "@types/graphql": ^14.5.0
     argon2: ^0.28.3
@@ -3487,7 +3466,7 @@ __metadata:
     fastify-cors: ^6.0.2
     fastify-secure-session: ^3.0.0
     findup-sync: ^5.0.0
-    graphql: ^16.2.0
+    graphql: ^16.3.0
     graphql-redis-subscriptions: ^2.4.2
     graphql-subscriptions: ^2.0.0
     http-status-codes: ^2.2.0
@@ -3511,10 +3490,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql@npm:*, graphql@npm:^16.0.0, graphql@npm:^16.2.0":
+"graphql@npm:*, graphql@npm:^16.0.0":
   version: 16.2.0
   resolution: "graphql@npm:16.2.0"
   checksum: 204b5c9991b82561651a28b13dbb2e0e67514171a6a8c045ca4a527b944087344a14519d0426d661b49f2305584b390591abadc82b942f7b65e64e05cb31a584
+  languageName: node
+  linkType: hard
+
+"graphql@npm:^16.3.0":
+  version: 16.3.0
+  resolution: "graphql@npm:16.3.0"
+  checksum: ba540641e9cd2a8de5b989ff1433b015f232fa73aaef478d6709c1339cd43113347917acb965a5799c004667687852fc8ff0cfaa935eb26374c91c1fd7fdaeb1
+  languageName: node
+  linkType: hard
+
+"graphql@npm:graphql-web-lite@^16.1.1000":
+  version: 16.1.1000
+  resolution: "graphql-web-lite@npm:16.1.1000"
+  checksum: ec4a47465c8be8555e402900af651e0ad48e5de89a448e2cf4ac1a09a82b20cd3fb27c358eb634ee1809232ecdb5a988839e4feeee3c7a01c2ee5cbe544b60da
   languageName: node
   linkType: hard
 
@@ -4084,6 +4077,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-what@npm:^4.1.6":
+  version: 4.1.7
+  resolution: "is-what@npm:4.1.7"
+  checksum: aade39dcc45a209d6cb2f2d5dbcf0e63ed894aadbae37bd5693c64e9876a27632431b43fc9d9332ebf0795eddd2abc11a2d0f3c6fa41c36330616a645660530e
+  languageName: node
+  linkType: hard
+
 "is-windows@npm:^1.0.1":
   version: 1.0.2
   resolution: "is-windows@npm:1.0.2"
@@ -4399,6 +4399,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"loupe@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "loupe@npm:2.3.1"
+  dependencies:
+    get-func-name: ^2.0.0
+  checksum: 11b4c4c9eb271b60d4d85e2ef344135d9043575e105045d1e08f10c0eca4b753df4dcfd9e1c0cbf7e19b25556dee6da16633005c47b9a925e293867c66b79f45
+  languageName: node
+  linkType: hard
+
 "lowercase-keys@npm:^1.0.0, lowercase-keys@npm:^1.0.1":
   version: 1.0.1
   resolution: "lowercase-keys@npm:1.0.1"
@@ -4522,6 +4531,16 @@ __metadata:
     is-what: ^3.14.1
     ts-toolbelt: ^9.6.0
   checksum: 39f68b7909f40f58c1a134abc7b10fab6a83fdfe07f6b28dfc71c60f3b10ece3b0c15467d314b7794adb2a0d99715c50b0d9bcf2e070cc3f9c389d80fcaee205
+  languageName: node
+  linkType: hard
+
+"merge-anything@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "merge-anything@npm:5.0.2"
+  dependencies:
+    is-what: ^4.1.6
+    ts-toolbelt: ^9.6.0
+  checksum: 5dccdb681e707177a110825f8f1a8b2618b3a3e3f204ab69288a32383de0d6e906bed40beace75104e805ceef1a06c0bde0933f7cdb6952242e3b739672998c7
   languageName: node
   linkType: hard
 
@@ -4838,24 +4857,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-domexception@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "node-domexception@npm:1.0.0"
-  checksum: ee1d37dd2a4eb26a8a92cd6b64dfc29caec72bff5e1ed9aba80c294f57a31ba4895a60fd48347cf17dd6e766da0ae87d75657dfd1f384ebfa60462c2283f5c7f
-  languageName: node
-  linkType: hard
-
-"node-fetch@npm:3.0.0-beta.9":
-  version: 3.0.0-beta.9
-  resolution: "node-fetch@npm:3.0.0-beta.9"
-  dependencies:
-    data-uri-to-buffer: ^3.0.1
-    fetch-blob: ^2.1.1
-  checksum: 586af0910649cb62f1c044ddac41e71c0b0f48133fba406ad5e0fab51baff18f22cd187ea65ef690ceed7386a71910e904348105dc8eae55f907fa94df7e76ca
-  languageName: node
-  linkType: hard
-
-"node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.5, node-fetch@npm:^2.6.6":
+"node-fetch@npm:^2.6.1":
   version: 2.6.7
   resolution: "node-fetch@npm:2.6.7"
   dependencies:
@@ -4866,17 +4868,6 @@ __metadata:
     encoding:
       optional: true
   checksum: 8d816ffd1ee22cab8301c7756ef04f3437f18dace86a1dae22cf81db8ef29c0bf6655f3215cb0cdb22b420b6fe141e64b26905e7f33f9377a7fa59135ea3e10b
-  languageName: node
-  linkType: hard
-
-"node-fetch@npm:^3.2.0":
-  version: 3.2.0
-  resolution: "node-fetch@npm:3.2.0"
-  dependencies:
-    data-uri-to-buffer: ^4.0.0
-    fetch-blob: ^3.1.4
-    formdata-polyfill: ^4.0.10
-  checksum: 1c809a0f64dd11cc18b49f990440e22c471da47da2a6d6b3388a83beba9d23ba7eaca1b9bf706a792bd283b824cf1a76777910859b9c28ad33a59f2ae4e44f8e
   languageName: node
   linkType: hard
 
@@ -5198,9 +5189,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino-pretty@npm:^7.5.0":
-  version: 7.5.0
-  resolution: "pino-pretty@npm:7.5.0"
+"pino-pretty@npm:^7.5.1":
+  version: 7.5.1
+  resolution: "pino-pretty@npm:7.5.1"
   dependencies:
     args: ^5.0.1
     colorette: ^2.0.7
@@ -5216,7 +5207,7 @@ __metadata:
     strip-json-comments: ^3.1.1
   bin:
     pino-pretty: bin.js
-  checksum: 68cb6d68b64690f80acfab665a049cb486a5e1980f4b600abe5dea68ea0b93ae671f2cbbf896602fa680f3720fbc861cdc18321d105b5bf25eb86f88a6536261
+  checksum: 41874497208de1f6ddb0891968a11fc3a446752b5f9e20bca4bea03849a9d5104de9ec6038572c5c24ecea6504c5db8f25cb93525754cd340308a1261d948165
   languageName: node
   linkType: hard
 
@@ -6142,6 +6133,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"solid-js@npm:^1.3.4":
+  version: 1.3.4
+  resolution: "solid-js@npm:1.3.4"
+  checksum: 45824c770ff0d68b28550fb13879a53cf41499d474a3e50f7785c47cb21a86bdf49b55919c6f5dc2270ec0d438654e0c90086e2d3066522f125053e502142e13
+  languageName: node
+  linkType: hard
+
 "solid-meta@npm:^0.27.3":
   version: 0.27.3
   resolution: "solid-meta@npm:0.27.3"
@@ -6217,6 +6215,17 @@ __metadata:
   bin:
     solid-start: bin.cjs
   checksum: a7ab7e23c3974143264614f8c0d76ad9b4e85cd5126fcbf92c705a58215f66501328968d039f39cb8b08a9cd3f89a90a0727a4a24fae10495310e3f7a7bb5eb1
+  languageName: node
+  linkType: hard
+
+"solid-urql@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "solid-urql@npm:0.1.0"
+  peerDependencies:
+    "@urql/core": ^2.1
+    graphql: ^15.5
+    solid-js: ^1.0.0
+  checksum: dafd7bda194889eb4e59d528c3821140cdfee8fb13a4a9ba7006058194e2a83b6e78001f4d5067655a9effea2b076bfbc6092a36fcba7c06e6b965244264669b
   languageName: node
   linkType: hard
 
@@ -6564,10 +6573,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tinyspy@npm:^0.2.8":
-  version: 0.2.8
-  resolution: "tinyspy@npm:0.2.8"
-  checksum: bbdca68172c3c580e9d4d570f37fb7470db5922531e9db0e5025556524a1a339b3adb0f7ac9d69d26029a24959db2b74487f778921c813d96f24185f2f1fefb6
+"tinyspy@npm:^0.2.10":
+  version: 0.2.10
+  resolution: "tinyspy@npm:0.2.10"
+  checksum: 7c4d89f603f5e12b335f5a97811b11712a6cc44565c2d1c1d76ccf6a0cb9c2b0ca8b7eb84f6cdabd0a49149fb9dababaefadab43bec6d8252dfc797a205f48bd
   languageName: node
   linkType: hard
 
@@ -6750,106 +6759,106 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:1.0.28":
-  version: 1.0.28
-  resolution: "turbo-darwin-64@npm:1.0.28"
+"turbo-darwin-64@npm:1.1.1":
+  version: 1.1.1
+  resolution: "turbo-darwin-64@npm:1.1.1"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:1.0.28":
-  version: 1.0.28
-  resolution: "turbo-darwin-arm64@npm:1.0.28"
+"turbo-darwin-arm64@npm:1.1.1":
+  version: 1.1.1
+  resolution: "turbo-darwin-arm64@npm:1.1.1"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-freebsd-64@npm:1.0.28":
-  version: 1.0.28
-  resolution: "turbo-freebsd-64@npm:1.0.28"
+"turbo-freebsd-64@npm:1.1.1":
+  version: 1.1.1
+  resolution: "turbo-freebsd-64@npm:1.1.1"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-freebsd-arm64@npm:1.0.28":
-  version: 1.0.28
-  resolution: "turbo-freebsd-arm64@npm:1.0.28"
+"turbo-freebsd-arm64@npm:1.1.1":
+  version: 1.1.1
+  resolution: "turbo-freebsd-arm64@npm:1.1.1"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-32@npm:1.0.28":
-  version: 1.0.28
-  resolution: "turbo-linux-32@npm:1.0.28"
+"turbo-linux-32@npm:1.1.1":
+  version: 1.1.1
+  resolution: "turbo-linux-32@npm:1.1.1"
   conditions: os=linux & cpu=ia32
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:1.0.28":
-  version: 1.0.28
-  resolution: "turbo-linux-64@npm:1.0.28"
+"turbo-linux-64@npm:1.1.1":
+  version: 1.1.1
+  resolution: "turbo-linux-64@npm:1.1.1"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:1.0.28":
-  version: 1.0.28
-  resolution: "turbo-linux-arm64@npm:1.0.28"
+"turbo-linux-arm64@npm:1.1.1":
+  version: 1.1.1
+  resolution: "turbo-linux-arm64@npm:1.1.1"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm@npm:1.0.28":
-  version: 1.0.28
-  resolution: "turbo-linux-arm@npm:1.0.28"
+"turbo-linux-arm@npm:1.1.1":
+  version: 1.1.1
+  resolution: "turbo-linux-arm@npm:1.1.1"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"turbo-linux-mips64le@npm:1.0.28":
-  version: 1.0.28
-  resolution: "turbo-linux-mips64le@npm:1.0.28"
+"turbo-linux-mips64le@npm:1.1.1":
+  version: 1.1.1
+  resolution: "turbo-linux-mips64le@npm:1.1.1"
   conditions: os=linux & cpu=mips64el
   languageName: node
   linkType: hard
 
-"turbo-linux-ppc64le@npm:1.0.28":
-  version: 1.0.28
-  resolution: "turbo-linux-ppc64le@npm:1.0.28"
+"turbo-linux-ppc64le@npm:1.1.1":
+  version: 1.1.1
+  resolution: "turbo-linux-ppc64le@npm:1.1.1"
   conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
 
-"turbo-windows-32@npm:1.0.28":
-  version: 1.0.28
-  resolution: "turbo-windows-32@npm:1.0.28"
+"turbo-windows-32@npm:1.1.1":
+  version: 1.1.1
+  resolution: "turbo-windows-32@npm:1.1.1"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:1.0.28":
-  version: 1.0.28
-  resolution: "turbo-windows-64@npm:1.0.28"
+"turbo-windows-64@npm:1.1.1":
+  version: 1.1.1
+  resolution: "turbo-windows-64@npm:1.1.1"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo@npm:^1.0.28":
-  version: 1.0.28
-  resolution: "turbo@npm:1.0.28"
+"turbo@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "turbo@npm:1.1.1"
   dependencies:
-    turbo-darwin-64: 1.0.28
-    turbo-darwin-arm64: 1.0.28
-    turbo-freebsd-64: 1.0.28
-    turbo-freebsd-arm64: 1.0.28
-    turbo-linux-32: 1.0.28
-    turbo-linux-64: 1.0.28
-    turbo-linux-arm: 1.0.28
-    turbo-linux-arm64: 1.0.28
-    turbo-linux-mips64le: 1.0.28
-    turbo-linux-ppc64le: 1.0.28
-    turbo-windows-32: 1.0.28
-    turbo-windows-64: 1.0.28
+    turbo-darwin-64: 1.1.1
+    turbo-darwin-arm64: 1.1.1
+    turbo-freebsd-64: 1.1.1
+    turbo-freebsd-arm64: 1.1.1
+    turbo-linux-32: 1.1.1
+    turbo-linux-64: 1.1.1
+    turbo-linux-arm: 1.1.1
+    turbo-linux-arm64: 1.1.1
+    turbo-linux-mips64le: 1.1.1
+    turbo-linux-ppc64le: 1.1.1
+    turbo-windows-32: 1.1.1
+    turbo-windows-64: 1.1.1
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -6877,7 +6886,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: ff8b57e49a44f8f8cf613363cba982b83362d619b3da64b1564d3a8695bc5148d92b9198c60acdd6568411aa6370673fa6d6d0b7c56d937359d9e068ac3e2811
+  checksum: 73f7ebd90117b57b3ef2b1afd81fec74c9a30e49ee6639bfbba2245082a38588a868eeff7a1df72510e75ec6524dcec5a4478210ef9bcf4eea1ac9ee394279f1
   languageName: node
   linkType: hard
 
@@ -6904,10 +6913,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^2.10.0":
-  version: 2.10.0
-  resolution: "type-fest@npm:2.10.0"
-  checksum: a14df0691efc38fe2d0c88ed28182a979c662b71b9e9776638cbaf0ba081f5afcd95ce23c3085f67367a5555b1984b6db828df57cf3b2ae2d61c01b10fa5bc40
+"type-fest@npm:^2.11.0":
+  version: 2.11.0
+  resolution: "type-fest@npm:2.11.0"
+  checksum: 267d8d6d36a87d72a050354b79daf644daed24c9880979bb688d7636dca5afc23dfba616dd0fbccfbbb77cc6511dc312e758cea08ab54160d09fda5ca0ef2eed
   languageName: node
   linkType: hard
 
@@ -7145,7 +7154,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-solid@npm:^2.2.1, vite-plugin-solid@npm:^2.2.4":
+"vite-plugin-solid@npm:^2.2.1":
   version: 2.2.4
   resolution: "vite-plugin-solid@npm:2.2.4"
   dependencies:
@@ -7157,6 +7166,21 @@ __metadata:
     solid-refresh: ^0.4.0
     vite: ^2.7.13
   checksum: e6701819c78c2688ed5d75f37589bb483f50f105614340aee3f01fb9a01d58316cc2c4283b3f1cb4e35de642fc8ae8167d71201b85762cfc502a5c201a6fa4b7
+  languageName: node
+  linkType: hard
+
+"vite-plugin-solid@npm:^2.2.5":
+  version: 2.2.5
+  resolution: "vite-plugin-solid@npm:2.2.5"
+  dependencies:
+    "@babel/core": ^7.16.12
+    "@babel/preset-typescript": ^7.16.7
+    babel-preset-solid: ^1.3.0
+    merge-anything: ^5.0.2
+    solid-js: ^1.3.3
+    solid-refresh: ^0.4.0
+    vite: ^2.7.13
+  checksum: e6d44fc086b83a84f268e4504bcb35481ffa2e978a56a9375b58c0cd1c9846378ddf46ab84ee6ff28cd07ce5222c2494993a6749817146b8e99a95a03ea9c37d
   languageName: node
   linkType: hard
 
@@ -7203,16 +7227,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vitest@npm:^0.2.3":
-  version: 0.2.3
-  resolution: "vitest@npm:0.2.3"
+"vitest@npm:^0.2.5":
+  version: 0.2.5
+  resolution: "vitest@npm:0.2.5"
   dependencies:
     "@types/chai": ^4.3.0
     "@types/chai-subset": ^1.3.3
-    chai: ^4.3.4
+    chai: ^4.3.6
     local-pkg: ^0.4.1
     tinypool: ^0.1.1
-    tinyspy: ^0.2.8
+    tinyspy: ^0.2.10
     vite: ">=2.7.13"
   peerDependencies:
     "@vitest/ui": "*"
@@ -7230,11 +7254,11 @@ __metadata:
       optional: true
   bin:
     vitest: vitest.mjs
-  checksum: e772f603c22770c600c2c5748e2892b1551d5157d36a794b56dd8edda449f8e70280076efaf540759c213abcb62d8e6e793dcbb8f1fe1159f6894cce6010f332
+  checksum: a19bd114afdf10aba8a936e9e61afd74f1c57591cadc798def2e04acf47a3a891e2a57c23ec01348641de572b4876f73a3bb08bbaa0b3f242f4e6b87bca61667
   languageName: node
   linkType: hard
 
-"web-streams-polyfill@npm:^3.0.1, web-streams-polyfill@npm:^3.0.3":
+"web-streams-polyfill@npm:^3.0.1":
   version: 3.2.0
   resolution: "web-streams-polyfill@npm:3.2.0"
   checksum: e23ad0649392fa0159dbfc6bb27474c308c3f332d9078cfef3c06c154165bef18732c5814126147c6c712f604216ddc950c171c854e3821f020e0d2d721a5958
@@ -7245,17 +7269,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "web@workspace:apps/web"
   dependencies:
-    "@aviarymail/config": "workspace:*"
     "@felte/solid": ^0.3.0
     "@felte/validator-zod": ^0.3.8
+    "@aviarymail/config": "workspace:*"
+    "@urql/core": ^2.3.6
+    graphql: "npm:graphql-web-lite@^16.1.1000"
     node-fetch: ^3.2.0
     solid-app-router: ^0.2.1
-    solid-js: ^1.3.3
+    solid-js: ^1.3.4
     solid-meta: ^0.27.3
     solid-start: next
     solid-start-node: next
+    solid-urql: ^0.1.0
     vite: ^2.7.13
-    vite-plugin-solid: ^2.2.4
+    vite-plugin-solid: ^2.2.5
     vite-plugin-windicss: ^1.6.3
     windicss: ^3.4.3
     zod: ^3.11.6
@@ -7355,6 +7382,13 @@ __metadata:
   bin:
     windicss: cli/index.js
   checksum: 3029c69249a1f5676ce2b4a991830bf0f86f47098ff1d6fa78668cd165e0388800c8edf479fd3209deefa5b027de50fdc10f02f6ec0de0af55db1afdaf5df7f2
+  languageName: node
+  linkType: hard
+
+"wonka@npm:^4.0.14":
+  version: 4.0.15
+  resolution: "wonka@npm:4.0.15"
+  checksum: afbee7359ed2d0a9146bf682f3953cb093f47d5f827e767e6ef33cb70ca6f30631afe5fe31dbb8d6c7eaed26c4ac6426e7c13568917c017ef6f42c71139b38f7
   languageName: node
   linkType: hard
 

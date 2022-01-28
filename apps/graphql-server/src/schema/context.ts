@@ -15,7 +15,8 @@ export async function context(
 ): Promise<ResolverContext> {
   const session = await _findSession(request);
 
-  if (session && session.maxAge > Date.now()) {
+  // TODO: actual session expiration logic
+  if (session) {
     const { cookies } = await authService.refreshSession(session.id);
 
     if (cookies) {

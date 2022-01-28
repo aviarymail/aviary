@@ -1,0 +1,17 @@
+{
+  "name": "@aviarymail/typestache",
+  "license": "Apache-2.0",
+  "version": "0.0.0",
+  "scripts": {
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.178",
+    "typescript": "^4.5.5",
+    "vitest": "^0.2.5"
+  },
+  "dependencies": {
+    "jtd": "^0.1.1",
+    "lodash": "^4.17.21"
+  }
+}

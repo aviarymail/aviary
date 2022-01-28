@@ -19,6 +19,7 @@ describe('generate-schema', () => {
 
   test('nested input objects', () => {
     // https://handlebarsjs.com/guide/#nested-input-objects
+
     const schema = generateSchema(`
       {{user.name}}
       {{user.contact.email}}
