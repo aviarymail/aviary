@@ -6,7 +6,7 @@ import {
 } from '../lib/errors';
 import { builder } from '../schema-builder';
 
-builder.mutationField('validateLogin', t =>
+builder.mutationField('verifyLoginCode', t =>
   t.prismaField({
     type: 'User',
     skipTypeScopes: true,

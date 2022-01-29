@@ -9,8 +9,8 @@ type Mutation {
   createProject(input: CreateProjectInput!): Project!
   logout: SuccessResponse!
   requestLoginCode(email: String!): SuccessResponse!
-  signup(input: SignupInput!): User!
-  validateLogin(code: String!, email: String!): User!
+  signup(input: SignupInput!): SuccessResponse!
+  verifyLoginCode(code: String!, email: String!): User!
 }
 
 input PaginationInput {

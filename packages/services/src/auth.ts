@@ -20,18 +20,16 @@ export async function registerUser(params: {
   firstName: string;
   lastName: string;
   skipConfirmation?: boolean;
-  query?: Partial<Prisma.UserCreateArgs>;
 }) {
   let user = await db.user.findUnique({
     where: { email: params.email },
   });
 
   if (user) {
-    return { data: null, error: 'user/EMAIL_TAKEN' } as const;
+    return { user: null, error: 'user/EMAIL_TAKEN' } as const;
   }
 
   user = await db.user.create({
-    ...params.query,
     data: {
       email: params.email,
       firstName: params.firstName,
@@ -62,12 +60,14 @@ export async function requestLoginCode(email: string) {
 
   const code = await _generateLoginCode(user.id);
 
+  console.log(ServerEnv.DEV);
+
   if (ServerEnv.DEV) {
     console.log(
       '\n' +
         `Sending login request code to ${email} \n\n` +
         'Click to login: \n' +
-        `http://localhost:8080/login/validate?email=${email}&code=${code}` +
+        `http://localhost:8080/login/verify?email=${email}&code=${code}` +
         '\n'
     );
   }

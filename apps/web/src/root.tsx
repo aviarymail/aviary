@@ -12,7 +12,7 @@ export default function Root() {
         <Meta />
         <Links />
       </head>
-      <body class="bg-white text-black">
+      <body className="bg-white text-black">
         <App />
         <Scripts />
       </body>

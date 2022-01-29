@@ -18,8 +18,9 @@ const schema = z.object({
 });
 
 builder.mutationField('signup', t =>
-  t.prismaField({
-    type: 'User',
+  t.field({
+    type: 'SuccessResponse',
+    skipTypeScopes: true,
     authScopes: {
       public: true,
     },
@@ -29,10 +30,9 @@ builder.mutationField('signup', t =>
         validate: { schema },
       }),
     },
-    async resolve(query, _root, { input }, _ctx) {
+    async resolve(_root, { input }, _ctx) {
       const { user, error } = await authService.registerUser({
         ...input,
-        query,
       });
 
       if (error === 'user/EMAIL_TAKEN') {
@@ -43,7 +43,7 @@ builder.mutationField('signup', t =>
         throw new InternalServerErrorException();
       }
 
-      return user;
+      return { success: true };
     },
   })
 );

@@ -1,0 +1,53 @@
+overwrite: true
+schema: ./schema.graphql
+documents:
+  - '!apps/web/src/gql.types.ts'
+  - 'apps/web/src/**/*.{ts,tsx}'
+
+generates:
+  apps/web/src/gql.types.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typed-document-node
+    config:
+      gqlImport: 'solid-urql#gql'
+      nonOptionalTypename: true
+      useTypeImports: true
+      dedupeFragments: true
+      preResolveTypes: true
+      scalars:
+        DateTime: string
+      namingConvention:
+        enumValues: change-case#upperCase
+
+  # src/:
+  #   preset: near-operation-file
+  #   plugins:
+  #     - typescript-operations
+  #     - typescript-react-apollo
+  #   presetConfig:
+  #     extension: .gql-gen.tsx
+  #     baseTypesPath: schema.types.ts
+  #   config:
+  #     gqlImport: '@apollo/client#gql'
+  #     nonOptionalTypename: true
+  #     useTypeImports: true
+  #     dedupeFragments: true
+  #     preResolveTypes: true
+  #     scalars:
+  #       DateTime: string
+
+  # src/lib/apollo/helpers.ts:
+  #   plugins:
+  #     - typescript-apollo-client-helpers
+  #   config:
+  #     gqlImport: '@apollo/client#gql'
+  #     useTypeImports: true
+
+  # schema.graphql:
+  #   plugins:
+  #     - schema-ast
+hooks:
+  afterAllFileWrite:
+    - prettier --write

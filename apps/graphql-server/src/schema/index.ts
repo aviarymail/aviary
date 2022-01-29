@@ -20,7 +20,7 @@ import './mutations/create-project.mutation';
 import './mutations/logout.mutation';
 import './mutations/request-login-code.mutation';
 import './mutations/signup.mutation';
-import './mutations/validate-login.mutation';
+import './mutations/verify-login-code.mutation';
 
 import './input-types/pagination-input';
 
