@@ -1,4 +1,4 @@
-import { db, Prisma } from '@aviarymail/db';
+import { db, Prisma, TeamRoles } from '@aviarymail/db';
 import { ServerEnv } from '@aviarymail/config/server-env';
 import { generateRedisToken, generateToken } from './utils/crypto';
 import { redis } from './utils/redis';
@@ -26,7 +26,7 @@ export async function registerUser(params: {
   });
 
   if (user) {
-    return { user: null, error: 'user/EMAIL_TAKEN' } as const;
+    return { error: 'user/EMAIL_TAKEN' } as const;
   }
 
   user = await db.user.create({
@@ -35,12 +35,22 @@ export async function registerUser(params: {
       firstName: params.firstName,
       lastName: params.lastName,
       confirmedAt: params.skipConfirmation ? new Date() : undefined,
+      teamMemberships: {
+        create: {
+          role: TeamRoles.ADMIN,
+          team: {
+            create: {
+              name: 'Personal',
+            },
+          },
+        },
+      },
     },
   });
 
   // TODO: Send email confirmation
 
-  return { user };
+  return { data: user };
 }
 
 /**
@@ -74,7 +84,7 @@ export async function requestLoginCode(email: string) {
 
   // TODO: Send login code email
 
-  return { user };
+  return { data: user };
 }
 
 /**
@@ -110,7 +120,7 @@ export async function validateLogin(params: {
     userAgent: params.userAgent,
   });
 
-  return { user, cookies };
+  return { data: { user, cookies } } as const;
 }
 
 /**

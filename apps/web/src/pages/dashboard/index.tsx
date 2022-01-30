@@ -1,6 +1,6 @@
 export default function Dashboard() {
   return (
-    <main>
+    <main className="container mx-auto">
       <p>dashboard</p>
     </main>
   );

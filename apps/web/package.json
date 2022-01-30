@@ -7,6 +7,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@aviarymail/typestache": "workspace:*",
     "@felte/solid": "^0.3.0",
     "@felte/validator-zod": "^0.3.8",
     "@urql/core": "^2.3.6",

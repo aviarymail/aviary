@@ -174,6 +174,29 @@ export type MeQuery = {
         email: string;
         firstName: string;
         lastName: string;
+        teamInvites: Array<{
+          __typename: "TeamInvite";
+          id: string;
+          invitedBy: {
+            __typename: "User";
+            id: string;
+            firstName: string;
+            lastName: string;
+          };
+          team: { __typename: "Team"; id: string; name: string };
+        }>;
+        teamMemberships: Array<{
+          __typename: "TeamMembership";
+          id: string;
+          createdAt: string;
+          role: TeamRoles;
+          team: {
+            __typename: "Team";
+            id: string;
+            createdAt: string;
+            name: string;
+          };
+        }>;
       }
     | null
     | undefined;
@@ -240,6 +263,90 @@ export const MeDocument = {
                 { kind: "Field", name: { kind: "Name", value: "email" } },
                 { kind: "Field", name: { kind: "Name", value: "firstName" } },
                 { kind: "Field", name: { kind: "Name", value: "lastName" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "teamInvites" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "invitedBy" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "firstName" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "lastName" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "team" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "teamMemberships" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "createdAt" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "role" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "team" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "createdAt" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },

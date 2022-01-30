@@ -1,53 +1,17 @@
-import { SchemaFormElements, SchemaFormProperties, SchemaFormType } from 'jtd';
-import { get, set } from 'lodash';
-import { Merge } from 'type-fest';
+import { AST, Type } from '../types';
 
-const RE_TAG = /\{+\s*(.*?)\s*\}+/g;
 const RE_WITH = /#with\s+/;
 const RE_EACH = /#each\s+/;
 const RE_CLOSE_CONTEXT = /\/(with|each)/;
 const RE_OPTIONAL = /#(if|unless)\s+/;
-const RE_OBJECT = /object/;
 const RE_MID_THIS = /.?this.?/g;
 const RE_TRAILING_THIS = /.?this$/g;
-
-type Schema = Merge<Merge<SchemaFormType, SchemaFormElements>, SchemaFormProperties>;
-type Type = 'value' | 'value[]' | 'object[]' | 'object';
-type Segment = [type: Type, optional: boolean];
-type AST = Record<string, Segment>;
-
-/**
- * Generate a JSON Typedef schema from a handlebars compatible template.
- * @param tpl
- */
-export function generateSchema(tpl: string) {
-  const tokens = _tokenize(tpl);
-  const ast = _parse(tokens);
-  return _build(ast);
-}
-
-/**
- * Extract all of the tag tokens from the template.
- * @param tpl
- */
-function _tokenize(tpl: string) {
-  let tags = [];
-  let matches;
-
-  while ((matches = RE_TAG.exec(tpl))) {
-    if (matches) {
-      tags.push(matches[1]);
-    }
-  }
-
-  return tags;
-}
 
 /**
  * Parse each tag to create an AST.
  * @param tokens
  */
-function _parse(tokens: string[]) {
+export function parseTokens(tokens: string[]) {
   // We need to keep track of the work in progress AST as well as a context to store
   // our current deptth when dealing with nested tag that need to reference their parent.
   // It's "dirty" in that we clean `.?this.?` out of the keys after the initial run.
@@ -194,56 +158,4 @@ function _parse(tokens: string[]) {
   }
 
   return clean;
-}
-
-/**
- * Take a prepared AST and transform it into a JDT schema.
- * @param ast
- */
-function _build(ast: AST): Schema {
-  const schema = {} as Schema;
-  const astKeys = Object.keys(ast).sort((a, b) => a.localeCompare(b));
-
-  for (const astKey of astKeys) {
-    const segments = astKey.split('.');
-    const processed: string[] = [];
-    const workingPath: string[] = [];
-
-    const process = (segment: string) => {
-      const prevPath = processed.join('.');
-      const prev = ast[prevPath] ?? ['object', false];
-
-      processed.push(segment);
-      const checkPath = processed.join('.');
-      const astItem = ast[checkPath] ?? ['object', false];
-
-      let value = {};
-      const [type, optional] = astItem;
-      const [prevType] = prev;
-
-      if (!workingPath.length || RE_OBJECT.test(prevType)) {
-        workingPath.push(optional ? 'optionalProperties' : 'properties');
-      }
-
-      workingPath.push(segment);
-
-      if (type === 'value[]') {
-        workingPath.push('elements');
-      }
-
-      if (type === 'object[]') {
-        workingPath.push('elements');
-      }
-
-      const path = workingPath.join('.');
-      if (get(schema, path)) return;
-      set(schema, path, value);
-    };
-
-    for (const segment of segments) {
-      process(segment);
-    }
-  }
-
-  return schema;
 }

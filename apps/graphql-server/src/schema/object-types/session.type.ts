@@ -9,7 +9,7 @@ builder.prismaObject('Session', {
       id: t.exposeID('id'),
       createdAt: t.expose('createdAt', { type: 'DateTime' }),
       token: t.exposeString('token'),
-      userAgent: t.exposeString('userAgent'),
+      userAgent: t.exposeString('userAgent', { nullable: true }),
     };
   },
 });

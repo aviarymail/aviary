@@ -31,7 +31,7 @@ builder.mutationField('signup', t =>
       }),
     },
     async resolve(_root, { input }, _ctx) {
-      const { user, error } = await authService.registerUser({
+      const { data, error } = await authService.registerUser({
         ...input,
       });
 
@@ -39,7 +39,7 @@ builder.mutationField('signup', t =>
         throw new BadRequestException('An account exists with that email.');
       }
 
-      if (!user) {
+      if (!data) {
         throw new InternalServerErrorException();
       }
 

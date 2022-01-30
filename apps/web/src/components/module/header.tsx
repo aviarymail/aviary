@@ -1,4 +1,4 @@
-import { NavLink } from 'solid-app-router';
+import { NavLink, useNavigate } from 'solid-app-router';
 import { createMutation, gql } from 'solid-urql';
 import { LogoutDocument } from '~/gql.types';
 import { currentUser, setCurrentUser } from '~/lib/current-user-store';
@@ -14,47 +14,59 @@ gql`
 `;
 
 export const Header = () => {
+  const navigate = useNavigate();
   const [_, logout] = createMutation(LogoutDocument);
 
   async function handleLogout() {
     try {
       await logout();
       setCurrentUser({ loggedIn: false });
+      navigate('/');
     } catch (err) {
       console.error();
     }
   }
 
   return (
-    <header class="container flex flex-r-w mx-auto py-10 items-center">
-      <p class="mr-20">
-        <NavLink href="/" class="text-black" end>
+    <header className="container flex flex-r-w mx-auto text-sm py-10 items-center">
+      <p className="mr-20">
+        <NavLink href={currentUser.loggedIn ? '/dashboard' : '/'} className="text-black" end>
           <Wordmark />
         </NavLink>
       </p>
 
-      <nav class="space-x-10 text-sm">
-        <NavLink href="/" class="text-black" activeClass="underline" end>
-          Home
-        </NavLink>
-      </nav>
-
       {!currentUser.loggedIn && (
-        <nav class="ml-auto space-x-10 text-sm">
-          <NavLink href="/login" class="text-black" activeClass="nunderline">
-            Login
+        <nav className="flex w-full items-center">
+          <NavLink href="/" className="text-black" activeClass="underline" end>
+            Home
           </NavLink>
-          <NavLink href="/signup" class="text-black" activeClass="nunderline">
-            Sign Up
-          </NavLink>
+
+          <div className="flex ml-auto space-x-10">
+            <NavLink href="/login" className="text-black" activeClass="nunderline">
+              Login
+            </NavLink>
+            <NavLink href="/signup" className="text-black" activeClass="nunderline">
+              Sign Up
+            </NavLink>
+          </div>
         </nav>
       )}
 
       {currentUser.loggedIn && (
-        <nav class="ml-auto space-x-10 text-sm">
-          <button aria-label="Logout" onClick={handleLogout}>
-            <IconLeave />
-          </button>
+        <nav className="flex w-full items-center">
+          <NavLink href="/dashboard" className="text-black" activeClass="underline" end>
+            Dashboard
+          </NavLink>
+
+          <div className="flex  ml-auto space-x-10 text-sm">
+            <NavLink href="/messages/new" className="text-black" activeClass="nunderline">
+              New Msg
+            </NavLink>
+
+            <button aria-label="Logout" onClick={handleLogout}>
+              <IconLeave />
+            </button>
+          </div>
         </nav>
       )}
     </header>

@@ -15,7 +15,7 @@ builder.mutationField('verifyLoginCode', t =>
       code: t.arg.string(),
     },
     async resolve(query, _root, { email, code }, { request, reply }) {
-      const { user, cookies, error } = await authService.validateLogin({
+      const { data, error } = await authService.validateLogin({
         query,
         email,
         code,
@@ -30,17 +30,17 @@ builder.mutationField('verifyLoginCode', t =>
         throw new ForbiddenException();
       }
 
-      if (!user) {
+      if (!data) {
         throw new InternalServerErrorException();
       }
 
-      if (cookies) {
-        for (const cookie of cookies) {
+      if (data.cookies) {
+        for (const cookie of data.cookies) {
           reply.setCookie(cookie.name, cookie.token, cookie.cookieConfig);
         }
       }
 
-      return user;
+      return data.user;
     },
   })
 );

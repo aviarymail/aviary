@@ -4,8 +4,8 @@ import { object, output, string } from 'zod';
 
 import { SignUpDocument } from '~/gql.types';
 import { createForm } from '~/hooks/create-form';
-import { Button } from '~/components/atoms/button';
-import { TextInput } from '~/components/atoms/text-input';
+import { Button } from '~/components/base/button';
+import { TextInput } from '~/components/base/text-input';
 
 gql`
   mutation SignUp($input: SignupInput!) {

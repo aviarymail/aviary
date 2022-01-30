@@ -39,7 +39,7 @@ type Session {
   createdAt: DateTime!
   id: ID!
   token: String!
-  userAgent: String!
+  userAgent: String
 }
 
 input SignupInput {

@@ -34,7 +34,7 @@ enum TeamRoles {
   BILLING
 }
 
-enum BlockPropTypes {
+enum VariableTypes {
   STRING
   NUMBER
   BOOLEAN
@@ -42,12 +42,8 @@ enum BlockPropTypes {
   OBJECT
 }
 
-enum TemplateParamTypes {
-  STRING
-  NUMBER
-  BOOLEAN
-  ENUM
-  OBJECT
+enum TemplateLanguages {
+  HANDLEBARS
 }
 
 // ======================
@@ -168,6 +164,9 @@ model Block {
   name          String
   description   String?
   order         Int             @default(0)
+  template      String
+  css           String?
+  layout        Boolean
   //
   blocksetId    String
   blockset      BlockSet        @relation(fields: [blocksetId], references: [id])
@@ -188,21 +187,21 @@ model BlockCategory {
 }
 
 model BlockProp {
-  id           String         @id @default(cuid())
-  order        Int            @default(0)
+  id           String        @id @default(cuid())
+  order        Int           @default(0)
   name         String
   key          String
   description  String?
-  type         BlockPropTypes
+  type         VariableTypes
   defaultValue Json?
   enumMembers  Json?
-  array        Boolean        @default(false)
+  array        Boolean       @default(false)
   //
   blockId      String
-  block        Block          @relation(fields: [blockId], references: [id])
+  block        Block         @relation(fields: [blockId], references: [id])
   parentId     String?
-  parent       BlockProp?     @relation("BlockPropToBlockProp", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  children     BlockProp[]    @relation("BlockPropToBlockProp")
+  parent       BlockProp?    @relation("BlockPropToBlockProp", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  children     BlockProp[]   @relation("BlockPropToBlockProp")
 
   @@unique([blockId, key])
   @@index(blockId)
@@ -235,19 +234,19 @@ model Template {
 }
 
 model TemplateParam {
-  id           String             @id @default(cuid())
-  order        Int                @default(0)
+  id           String          @id @default(cuid())
+  order        Int             @default(0)
   key          String
-  type         TemplateParamTypes
+  type         VariableTypes
   defaultValue Json?
   enumMembers  Json?
-  array        Boolean            @default(false)
+  array        Boolean         @default(false)
   //
   templateId   String
-  template     Template           @relation(fields: [templateId], references: [id])
+  template     Template        @relation(fields: [templateId], references: [id])
   parentId     String?
-  parent       TemplateParam?     @relation("TemplateParamToTemplateParam", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  children     TemplateParam[]    @relation("TemplateParamToTemplateParam")
+  parent       TemplateParam?  @relation("TemplateParamToTemplateParam", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  children     TemplateParam[] @relation("TemplateParamToTemplateParam")
 
   @@unique([templateId, key])
   @@index(templateId)
@@ -259,6 +258,7 @@ model TemplateBlock {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   props     Json
+  layout    Boolean
   //
   messageId String
   message   Template @relation(fields: [messageId], references: [id])

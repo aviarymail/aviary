@@ -1,11 +1,11 @@
 import { expect, describe, test } from 'vitest';
-import { generateSchema } from './generate-schema';
+import { generateJtdSchema } from './generate-jtd-schema';
 
 describe('generate-schema', () => {
   test('simple expressions', () => {
     // https://handlebarsjs.com/guide/#simple-expressions
 
-    const schema = generateSchema(`
+    const schema = generateJtdSchema(`
       {{name}} {{company}}
     `);
 
@@ -20,7 +20,7 @@ describe('generate-schema', () => {
   test('nested input objects', () => {
     // https://handlebarsjs.com/guide/#nested-input-objects
 
-    const schema = generateSchema(`
+    const schema = generateJtdSchema(`
       {{user.name}}
       {{user.contact.email}}
     `);
@@ -45,7 +45,7 @@ describe('generate-schema', () => {
     // https://handlebarsjs.com/guide/#evaluation-context
     // https://handlebarsjs.com/guide/builtin-helpers.html#with
 
-    const schema = generateSchema(`
+    const schema = generateJtdSchema(`
       {{#with category}}
         {{name}}
       {{/with}}
@@ -85,7 +85,7 @@ describe('generate-schema', () => {
     // https://handlebarsjs.com/guide/#evaluation-context
     // https://handlebarsjs.com/guide/builtin-helpers.html#each
 
-    const schema = generateSchema(`
+    const schema = generateJtdSchema(`
       {{#each categories}}
         {{this}}
       {{/each}}
@@ -120,7 +120,7 @@ describe('generate-schema', () => {
   test('if', () => {
     // https://handlebarsjs.com/guide/builtin-helpers.html#if
 
-    const schema = generateSchema(`
+    const schema = generateJtdSchema(`
       {{#if category}}
         {{category}}
       {{/if}}
@@ -164,7 +164,7 @@ describe('generate-schema', () => {
   test('unless', () => {
     // https://handlebarsjs.com/guide/builtin-helpers.html#unless
 
-    const schema = generateSchema(`
+    const schema = generateJtdSchema(`
       {{#unless category}}
         {{category}}
       {{/unless}}
@@ -202,7 +202,7 @@ describe('generate-schema', () => {
   });
 
   test('with nested in if/unless', () => {
-    const schema = generateSchema(`
+    const schema = generateJtdSchema(`
       {{#if user}}
         {{#with user}}
           {{name}}
@@ -228,7 +228,7 @@ describe('generate-schema', () => {
   });
 
   test('if nested in with nested in each', () => {
-    const schema = generateSchema(`
+    const schema = generateJtdSchema(`
       {{#each account.user}}
         {{name}}
         {{#with cars}}
@@ -270,7 +270,7 @@ describe('generate-schema', () => {
   });
 
   test('recursive relationships in an each tag', () => {
-    const schema = generateSchema(`
+    const schema = generateJtdSchema(`
       {{#each comments}}
         {{this.author}}
         {{#each this.comments}}
