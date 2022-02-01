@@ -56,6 +56,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@aviarymail/mailblocks@workspace:packages/mailblocks":
+  version: 0.0.0-use.local
+  resolution: "@aviarymail/mailblocks@workspace:packages/mailblocks"
+  dependencies:
+    concurrently: ^7.0.0
+    fastify: ^3.27.0
+    fastify-static: ^4.5.0
+    handlebars: ^4.7.7
+    nodemon: ^2.0.15
+    tailwindcss: ^3.0.18
+  languageName: unknown
+  linkType: soft
+
 "@aviarymail/services@workspace:*, @aviarymail/services@workspace:packages/services":
   version: 0.0.0-use.local
   resolution: "@aviarymail/services@workspace:packages/services"
@@ -6630,19 +6643,6 @@ __metadata:
   checksum: 727a1fb70f9610304fe384f1df0251eb7d1d9dd779c07ef1225690361b71b216f26f5d934bfb11c919b5b0e7ba50f6240c823a6f2e44cfd33d4a07d7747ca829
   languageName: node
   linkType: hard
-
-"mailblocks@workspace:packages/mailblocks":
-  version: 0.0.0-use.local
-  resolution: "mailblocks@workspace:packages/mailblocks"
-  dependencies:
-    concurrently: ^7.0.0
-    fastify: ^3.27.0
-    fastify-static: ^4.5.0
-    handlebars: ^4.7.7
-    nodemon: ^2.0.15
-    tailwindcss: ^3.0.18
-  languageName: unknown
-  linkType: soft
 
 "mailgun.js@npm:^4.1.6":
   version: 4.1.6
