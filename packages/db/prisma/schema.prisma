@@ -137,25 +137,25 @@ model TeamInvite {
 }
 
 model Project {
-  id        String     @id @default(cuid())
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   name      String
   //
   teamId    String
-  team      Team       @relation(fields: [teamId], references: [id])
-  messages  Template[]
+  team      Team      @relation(fields: [teamId], references: [id])
+  messages  Message[]
 
   @@index(teamId)
 }
 
 model BlockSet {
-  id        String     @id @default(cuid())
-  updatedAt DateTime   @updatedAt
+  id        String    @id @default(cuid())
+  updatedAt DateTime  @updatedAt
   name      String
   //
   blocks    Block[]
-  templates Template[]
+  messages  Message[]
 }
 
 model Block {
@@ -164,9 +164,11 @@ model Block {
   name          String
   description   String?
   order         Int             @default(0)
-  template      String
-  css           String?
   layout        Boolean
+  markup        String
+  css           String?
+  precomp       String
+  schema        Json
   //
   blocksetId    String
   blockset      BlockSet        @relation(fields: [blocksetId], references: [id])
@@ -208,7 +210,7 @@ model BlockProp {
   @@index(parentId)
 }
 
-model Template {
+model Message {
   id          String           @id @default(cuid())
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
@@ -216,6 +218,9 @@ model Template {
   name        String
   slug        String
   description String
+  markup      String?
+  css         String?
+  schema      String?
   //
   blocksetId  String
   blockset    BlockSet         @relation(fields: [blocksetId], references: [id])
@@ -231,6 +236,7 @@ model Template {
   @@index(blocksetId)
   @@index(projectId)
   @@index(categoryId)
+  @@map("Template")
 }
 
 model TemplateParam {
@@ -243,7 +249,7 @@ model TemplateParam {
   array        Boolean         @default(false)
   //
   templateId   String
-  template     Template        @relation(fields: [templateId], references: [id])
+  template     Message         @relation(fields: [templateId], references: [id])
   parentId     String?
   parent       TemplateParam?  @relation("TemplateParamToTemplateParam", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   children     TemplateParam[] @relation("TemplateParamToTemplateParam")
@@ -261,7 +267,7 @@ model TemplateBlock {
   layout    Boolean
   //
   messageId String
-  message   Template @relation(fields: [messageId], references: [id])
+  message   Message  @relation(fields: [messageId], references: [id])
   blockId   String
   block     Block    @relation(fields: [blockId], references: [id])
 
@@ -270,8 +276,8 @@ model TemplateBlock {
 }
 
 model TemplateCategory {
-  id        String     @id @default(cuid())
+  id        String    @id @default(cuid())
   name      String
   //
-  templates Template[]
+  templates Message[]
 }

@@ -10,11 +10,12 @@
     "fns": "yarn workspace fns",
     "web": "yarn workspace web",
     "graphql-server": "yarn workspace graphql-server",
-    "cli": "yarn workspace @aviarymail/cli",
     "client": "yarn workspace @aviarymail/client",
     "db": "yarn workspace @aviarymail/db",
-    "typestache": "yarn workspace @aviarymail/typestache",
+    "mailblocks": "yarn workspace @aviarymail/mailblocks",
+    "sendn": "yarn workspace @aviarymail/sendn",
     "services": "yarn workspace @aviarymail/services",
+    "typestache": "yarn workspace @aviarymail/typestache",
     "gen:gql:web": "graphql-codegen --config codegen.web.yml"
   },
   "devDependencies": {
