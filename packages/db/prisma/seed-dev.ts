@@ -4,25 +4,43 @@ import task from 'tasuku';
 const prisma = new PrismaClient();
 
 async function main() {
-  let user: User;
-
   await task('Seed development database', async ({ task }) => {
-    await task('Create initial user with a personal team', async () => {
-      user = await prisma.user.create({
+    const { result: user } = await task('Create initial user', async () => {
+      return prisma.user.create({
         data: {
           email: 'asd@asd.com',
           firstName: 'Michael',
           lastName: 'Jordan',
           confirmedAt: new Date(),
-          teamMemberships: {
+        },
+      });
+    });
+
+    const { result: membership } = await task('Add user to personal team', async () => {
+      return prisma.teamMembership.create({
+        data: {
+          user: {
+            connect: { id: user.id },
+          },
+          role: TeamRoles.ADMIN,
+          team: {
             create: {
-              role: TeamRoles.ADMIN,
-              team: {
-                create: {
-                  name: 'Personal',
-                },
-              },
+              name: 'Personal',
             },
+          },
+        },
+        include: {
+          team: true,
+        },
+      });
+    });
+
+    await task('Create initial team project', async () => {
+      return prisma.project.create({
+        data: {
+          name: 'Some Project Name',
+          team: {
+            connect: { id: membership.teamId },
           },
         },
       });

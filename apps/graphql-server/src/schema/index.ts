@@ -4,6 +4,7 @@ import { lexicographicSortSchema, printSchema } from 'graphql';
 import { ServerEnv } from '@aviarymail/config/server-env';
 import { builder } from './schema-builder';
 
+import './object-types/message.type';
 import './object-types/project.type';
 import './object-types/session.type';
 import './object-types/success-response.type';

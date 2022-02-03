@@ -46,6 +46,13 @@ enum TemplateLanguages {
   HANDLEBARS
 }
 
+enum MessageStatuses {
+  ACTIVE
+  INACTIVE
+  WARNING
+  ERROR
+}
+
 // ======================
 // Models
 // ======================
@@ -211,9 +218,9 @@ model BlockProp {
 }
 
 model Message {
-  id          String           @id @default(cuid())
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt
+  id          String          @id @default(cuid())
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
   prefab      Boolean
   name        String
   slug        String
@@ -221,13 +228,14 @@ model Message {
   markup      String?
   css         String?
   schema      String?
+  status      MessageStatuses @default(ACTIVE)
+  sent        Int             @default(0)
+  category    String
   //
   blocksetId  String
-  blockset    BlockSet         @relation(fields: [blocksetId], references: [id])
+  blockset    BlockSet        @relation(fields: [blocksetId], references: [id])
   projectId   String?
-  project     Project?         @relation(fields: [projectId], references: [id])
-  categoryId  String
-  category    TemplateCategory @relation(fields: [categoryId], references: [id])
+  project     Project?        @relation(fields: [projectId], references: [id])
   blocks      TemplateBlock[]
   params      TemplateParam[]
 
@@ -235,8 +243,6 @@ model Message {
   @@unique([projectId, slug])
   @@index(blocksetId)
   @@index(projectId)
-  @@index(categoryId)
-  @@map("Template")
 }
 
 model TemplateParam {
@@ -273,11 +279,4 @@ model TemplateBlock {
 
   @@index(messageId)
   @@index(blockId)
-}
-
-model TemplateCategory {
-  id        String    @id @default(cuid())
-  name      String
-  //
-  templates Message[]
 }

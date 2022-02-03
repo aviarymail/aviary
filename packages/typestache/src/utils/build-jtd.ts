@@ -3,7 +3,7 @@ import { AST, Schema } from '../types';
 
 const RE_OBJECT = /object/;
 
-export function buildJtd(ast: AST) {
+export function buildJtd(ast: AST): Schema {
   const schema = {} as Schema;
   const astKeys = Object.keys(ast).sort((a, b) => a.localeCompare(b));
 

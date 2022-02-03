@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "./scripts/clean.sh",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "start": "turbo run start",
+    "start": "turbo run start --scope=graphql-server --scope=web",
     "fns": "yarn workspace fns",
     "web": "yarn workspace web",
     "graphql-server": "yarn workspace graphql-server",

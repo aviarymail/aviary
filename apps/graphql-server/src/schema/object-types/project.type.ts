@@ -13,6 +13,8 @@ builder.prismaObject('Project', {
 
       teamId: t.exposeID('teamId'),
       team: t.relation('team'),
+
+      messages: t.relation('messages'),
     };
   },
 });

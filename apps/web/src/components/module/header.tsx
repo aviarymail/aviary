@@ -1,4 +1,5 @@
 import { NavLink, useNavigate } from 'solid-app-router';
+import { createSignal } from 'solid-js';
 import { createMutation, gql } from 'solid-urql';
 import { LogoutDocument } from '~/gql.types';
 import { currentUser, setCurrentUser } from '~/lib/current-user-store';
@@ -54,9 +55,17 @@ export const Header = () => {
 
       {currentUser.loggedIn && (
         <nav className="flex w-full items-center">
-          <NavLink href="/dashboard" className="text-black" activeClass="underline" end>
-            Dashboard
-          </NavLink>
+          <div className="space-x-10">
+            <NavLink href="/dashboard" className="text-black" activeClass="underline" end>
+              Messages
+            </NavLink>
+            <NavLink href="/theme" className="text-black" activeClass="underline" end>
+              Theme
+            </NavLink>
+            <NavLink href="/billing" className="text-black" activeClass="underline" end>
+              Billing
+            </NavLink>
+          </div>
 
           <div className="flex  ml-auto space-x-10 text-sm">
             <NavLink href="/messages/new" className="text-black" activeClass="nunderline">

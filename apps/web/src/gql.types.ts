@@ -25,6 +25,30 @@ export type CreateProjectInput = {
   teamId: Scalars["ID"];
 };
 
+export type Message = {
+  __typename: "Message";
+  category: Scalars["String"];
+  createdAt: Scalars["DateTime"];
+  css?: Maybe<Scalars["String"]>;
+  description: Scalars["String"];
+  id: Scalars["ID"];
+  markup?: Maybe<Scalars["String"]>;
+  name: Scalars["String"];
+  prefab: Scalars["Boolean"];
+  schema?: Maybe<Scalars["String"]>;
+  sent: Scalars["Int"];
+  slug: Scalars["String"];
+  status: MessageStatuses;
+  updatedAt: Scalars["DateTime"];
+};
+
+export enum MessageStatuses {
+  ACTIVE = "ACTIVE",
+  ERROR = "ERROR",
+  INACTIVE = "INACTIVE",
+  WARNING = "WARNING",
+}
+
 export type Mutation = {
   __typename: "Mutation";
   createProject: Project;
@@ -62,6 +86,7 @@ export type Project = {
   __typename: "Project";
   createdAt: Scalars["DateTime"];
   id: Scalars["ID"];
+  messages: Array<Message>;
   name: Scalars["String"];
   team: Team;
   teamId: Scalars["ID"];
@@ -88,7 +113,7 @@ export type Session = {
   createdAt: Scalars["DateTime"];
   id: Scalars["ID"];
   token: Scalars["String"];
-  userAgent: Scalars["String"];
+  userAgent?: Maybe<Scalars["String"]>;
 };
 
 export type SignupInput = {
@@ -209,6 +234,26 @@ export type LogoutMutation = {
   logout: { __typename: "SuccessResponse"; success: boolean };
 };
 
+export type MessageListItemFieldsFragment = {
+  __typename: "Message";
+  id: string;
+  status: MessageStatuses;
+  name: string;
+  description: string;
+  sent: number;
+  category: string;
+};
+
+export type MessageListFieldsFragment = {
+  __typename: "Message";
+  id: string;
+  status: MessageStatuses;
+  name: string;
+  description: string;
+  sent: number;
+  category: string;
+};
+
 export type RequestLoginCodeMutationVariables = Exact<{
   email: Scalars["String"];
 }>;
@@ -243,6 +288,53 @@ export type SignUpMutation = {
   signup: { __typename: "SuccessResponse"; success: boolean };
 };
 
+export const MessageListItemFieldsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MessageListItemFields" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Message" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "status" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "sent" } },
+          { kind: "Field", name: { kind: "Name", value: "category" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MessageListItemFieldsFragment, unknown>;
+export const MessageListFieldsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MessageListFields" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Message" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "FragmentSpread",
+            name: { kind: "Name", value: "MessageListItemFields" },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MessageListFieldsFragment, unknown>;
 export const MeDocument = {
   kind: "Document",
   definitions: [
