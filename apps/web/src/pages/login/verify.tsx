@@ -1,13 +1,12 @@
+import { useNavigate, useSearchParams } from 'solid-app-router';
+import { onMount } from 'solid-js';
 import { Title } from 'solid-meta';
 import { createMutation, gql } from 'solid-urql';
 import { object, output, string } from 'zod';
-
-import { VerifyLoginCodeDocument } from '~/gql.types';
-import { createForm } from '~/hooks/create-form';
 import { Button } from '~/components/base/button';
 import { TextInput } from '~/components/base/text-input';
-import { useNavigate, useSearchParams } from 'solid-app-router';
-import { onMount } from 'solid-js';
+import { VerifyLoginCodeDocument } from '~/gql.types';
+import { createForm } from '~/hooks/create-form';
 import { setCurrentUser } from '~/lib/current-user-store';
 
 gql`
@@ -17,6 +16,7 @@ gql`
       email
       firstName
       lastName
+      role
     }
   }
 `;

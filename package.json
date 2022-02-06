@@ -15,7 +15,7 @@
     "mailblocks": "yarn workspace @aviarymail/mailblocks",
     "sendn": "yarn workspace @aviarymail/sendn",
     "services": "yarn workspace @aviarymail/services",
-    "typestache": "yarn workspace @aviarymail/typestache",
+    "hbs-to-jtd": "yarn workspace @aviarymail/hbs-to-jtd",
     "gen:gql:web": "graphql-codegen --config codegen.web.yml"
   },
   "devDependencies": {

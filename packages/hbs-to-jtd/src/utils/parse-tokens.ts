@@ -22,7 +22,7 @@ export function parseTokens(tokens: string[]) {
    * Intelligently adds a key to the AST while potentially handling collisions.
    */
   function setKey(key: string, type: Type, optional: boolean) {
-    // If we have values stored in context and the last
+    // If we have values stored in context we need to append them in front.
     if (context.length && context[context.length - 1] !== key) {
       if (context.join('.') !== key) {
         key = `${context.join('.')}.${key}`;

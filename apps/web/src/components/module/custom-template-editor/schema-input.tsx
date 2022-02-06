@@ -1,4 +1,4 @@
-import { parseTokens, tokenize } from '@aviarymail/typestache';
+import { parseTokens, tokenize } from '@aviarymail/hbs-to-jtd';
 import { Accessor, Component, createEffect, createMemo, createSignal, For } from 'solid-js';
 
 interface Props {

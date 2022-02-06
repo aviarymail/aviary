@@ -1,4 +1,4 @@
-import { PrismaClient, TeamRoles, User } from '@prisma/client';
+import { PrismaClient, TeamRoles } from '@prisma/client';
 import task from 'tasuku';
 
 const prisma = new PrismaClient();
@@ -22,7 +22,7 @@ async function main() {
           user: {
             connect: { id: user.id },
           },
-          role: TeamRoles.ADMIN,
+          role: TeamRoles.Admin,
           team: {
             create: {
               name: 'Personal',

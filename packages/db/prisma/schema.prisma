@@ -23,34 +23,34 @@ generator pothos {
 // ======================
 
 enum UserRoles {
-  MADE
-  SUPPORT
-  USER
+  Made
+  Support
+  User
 }
 
 enum TeamRoles {
-  ADMIN
-  MEMBER
-  BILLING
+  Admin
+  Member
+  Billing
 }
 
 enum VariableTypes {
-  STRING
-  NUMBER
-  BOOLEAN
-  ENUM
-  OBJECT
+  String
+  Number
+  Boolean
+  Enum
+  Object
 }
 
 enum TemplateLanguages {
-  HANDLEBARS
+  Handlebars
 }
 
 enum MessageStatuses {
-  ACTIVE
-  INACTIVE
-  WARNING
-  ERROR
+  Active
+  Inactive
+  Warning
+  Error
 }
 
 // ======================
@@ -62,7 +62,7 @@ model User {
   createdAt         DateTime           @default(now())
   updatedAt         DateTime           @updatedAt
   confirmedAt       DateTime?
-  role              UserRoles          @default(USER)
+  role              UserRoles          @default(User)
   email             String             @unique
   firstName         String
   lastName          String
@@ -115,7 +115,7 @@ model TeamMembership {
   id        String    @id @default(cuid())
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  role      TeamRoles @default(MEMBER)
+  role      TeamRoles @default(Member)
   //
   userId    String
   user      User      @relation(fields: [userId], references: [id])
@@ -228,7 +228,7 @@ model Message {
   markup      String?
   css         String?
   schema      String?
-  status      MessageStatuses @default(ACTIVE)
+  status      MessageStatuses @default(Active)
   sent        Int             @default(0)
   category    String
   //

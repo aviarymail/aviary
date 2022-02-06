@@ -1,5 +1,4 @@
 import { NavLink, useNavigate } from 'solid-app-router';
-import { createSignal } from 'solid-js';
 import { createMutation, gql } from 'solid-urql';
 import { LogoutDocument } from '~/gql.types';
 import { currentUser, setCurrentUser } from '~/lib/current-user-store';
@@ -29,7 +28,7 @@ export const Header = () => {
   }
 
   return (
-    <header className="container flex flex-r-w mx-auto text-sm py-10 items-center">
+    <header className="container flex flex-r-w mx-auto text-sm mb-10 py-10 items-center">
       <p className="mr-20">
         <NavLink href={currentUser.loggedIn ? '/dashboard' : '/'} className="text-black" end>
           <Wordmark />

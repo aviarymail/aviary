@@ -1,8 +1,8 @@
-import { db, Prisma, TeamRoles } from '@aviarymail/db';
 import { ServerEnv } from '@aviarymail/config/server-env';
-import { generateRedisToken, generateToken } from './utils/crypto';
-import { redis } from './utils/redis';
+import { db, Prisma, TeamRoles } from '@aviarymail/db';
 import { logger } from '.';
+import { generateToken } from './utils/crypto';
+import { redis } from './utils/redis';
 
 const COOKIE_CONFIG = {
   httpOnly: ServerEnv.PROD,
@@ -37,7 +37,7 @@ export async function registerUser(params: {
       confirmedAt: params.skipConfirmation ? new Date() : undefined,
       teamMemberships: {
         create: {
-          role: TeamRoles.ADMIN,
+          role: TeamRoles.Admin,
           team: {
             create: {
               name: 'Personal',

@@ -6,7 +6,7 @@ const hbs = require('handlebars');
 const server = fastify();
 
 server.register(require('fastify-static'), {
-  root: resolve(__dirname, '..', 'dist'),
+  root: resolve(__dirname, '..', 'build'),
   prefix: '/assets',
 });
 
@@ -49,7 +49,7 @@ server.get('/:block', (req, reply) => {
   reply.type('text/html').send(
     html(`
       <a href="/" class="text-white top-5 left-5 absolute">Back</a>
-      <div class="bg-white rounded shadow-2xl w-[960px] resize-x overflow-auto">
+      <div class="bg-white rounded shadow-2xl w-[960px]">
         ${rendered}
       </div>
     `)
@@ -63,7 +63,7 @@ server.get('/examples/:example', (req, reply) => {
   reply.type('text/html').send(
     html(`
       <a href="/" class="text-white top-5 left-5 absolute">Back</a>
-      <div class="bg-white rounded shadow-2xl w-[960px] resize-x overflow-auto">
+      <div class="bg-white rounded shadow-2xl w-[960px]">
         ${rendered.join('')}
       </div>
     `)
@@ -101,7 +101,7 @@ function html(body) {
 
         <link rel="stylesheet" href="/assets/styles.css">
       </head>
-      <body class="flex bg-gray-900 p-20 items-center justify-center">
+      <body class="flex bg-gray-900 items-center justify-center">
         ${body}
       </body>
     </html>
@@ -109,13 +109,13 @@ function html(body) {
 }
 
 readdirSync(resolve(__dirname, 'partials')).forEach(name => {
-  name = name.replace('.html', '');
-  const file = readFileSync(resolve(__dirname, `partials/${name}.html`), 'utf8');
+  name = name.replace('.hbs', '');
+  const file = readFileSync(resolve(__dirname, `partials/${name}.hbs`), 'utf8');
   hbs.registerPartial(name, file);
 });
 
 readdirSync(resolve(__dirname, 'blocks')).forEach(name => {
-  const file = readFileSync(resolve(__dirname, `blocks/${name}/index.html`), 'utf8');
+  const file = readFileSync(resolve(__dirname, `blocks/${name}/index.hbs`), 'utf8');
   hbs.registerPartial(name, file);
 });
 
@@ -125,7 +125,7 @@ server.listen(3000, err => {
 });
 
 function block(name, d) {
-  const file = readFileSync(resolve(__dirname, `blocks/${name}/index.html`), 'utf8');
+  const file = readFileSync(resolve(__dirname, `blocks/${name}/index.hbs`), 'utf8');
   const preflight = hbs.compile(file)({});
   return hbs.compile(preflight)(d || data(name) || {});
 }

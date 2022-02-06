@@ -9,8 +9,9 @@ node_modules
 coverage
 
 # builds
-dist
 bin
+build
+dist
 
 # misc
 .DS_Store

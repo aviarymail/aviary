@@ -2,11 +2,10 @@ import { useNavigate } from 'solid-app-router';
 import { Title } from 'solid-meta';
 import { createMutation, gql } from 'solid-urql';
 import { object, output, string } from 'zod';
-
-import { RequestLoginCodeDocument } from '~/gql.types';
-import { createForm } from '~/hooks/create-form';
 import { Button } from '~/components/base/button';
 import { TextInput } from '~/components/base/text-input';
+import { RequestLoginCodeDocument } from '~/gql.types';
+import { createForm } from '~/hooks/create-form';
 
 const schema = object({
   email: string().email(),

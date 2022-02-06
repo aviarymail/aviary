@@ -18,8 +18,6 @@ generates:
       preResolveTypes: true
       scalars:
         DateTime: string
-      namingConvention:
-        enumValues: change-case#upperCase
 
   # src/:
   #   preset: near-operation-file

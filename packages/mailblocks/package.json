@@ -3,8 +3,8 @@
   "packageManager": "yarn@3.1.1",
   "scripts": {
     "start": "concurrently \"yarn start:server\" \"yarn start:css\"",
-    "start:server": "nodemon ./src/server.js --watch src -e html,css,js",
-    "start:css": "npx tailwindcss -i ./src/styles.css -o ./dist/styles.css --watch"
+    "start:server": "nodemon ./src/server.js --watch src -e hbs,css,js",
+    "start:css": "npx tailwindcss -i ./src/styles.css -o ./build/styles.css --watch"
   },
   "dependencies": {
     "fastify": "^3.27.0",

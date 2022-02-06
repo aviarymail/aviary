@@ -22,10 +22,10 @@ type Message {
 }
 
 enum MessageStatuses {
-  ACTIVE
-  ERROR
-  INACTIVE
-  WARNING
+  Active
+  Error
+  Inactive
+  Warning
 }
 
 type Mutation {
@@ -108,9 +108,9 @@ type TeamMembership {
 }
 
 enum TeamRoles {
-  ADMIN
-  BILLING
-  MEMBER
+  Admin
+  Billing
+  Member
 }
 
 type User {
@@ -128,7 +128,7 @@ type User {
 }
 
 enum UserRoles {
-  MADE
-  SUPPORT
-  USER
+  Made
+  Support
+  User
 }

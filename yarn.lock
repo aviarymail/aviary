@@ -56,6 +56,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@aviarymail/hbs-to-jtd@workspace:*, @aviarymail/hbs-to-jtd@workspace:packages/hbs-to-jtd":
+  version: 0.0.0-use.local
+  resolution: "@aviarymail/hbs-to-jtd@workspace:packages/hbs-to-jtd"
+  dependencies:
+    "@types/lodash": ^4.14.178
+    jtd: ^0.1.1
+    lodash: ^4.17.21
+    typescript: ^4.5.5
+    vitest: ^0.2.5
+  languageName: unknown
+  linkType: soft
+
 "@aviarymail/mailblocks@workspace:packages/mailblocks":
   version: 0.0.0-use.local
   resolution: "@aviarymail/mailblocks@workspace:packages/mailblocks"
@@ -82,18 +94,6 @@ __metadata:
     nanoid: ^3.2.0
     pino: ^7.6.4
     pino-pretty: ^7.5.1
-  languageName: unknown
-  linkType: soft
-
-"@aviarymail/typestache@workspace:*, @aviarymail/typestache@workspace:packages/typestache":
-  version: 0.0.0-use.local
-  resolution: "@aviarymail/typestache@workspace:packages/typestache"
-  dependencies:
-    "@types/lodash": ^4.14.178
-    jtd: ^0.1.1
-    lodash: ^4.17.21
-    typescript: ^4.5.5
-    vitest: ^0.2.5
   languageName: unknown
   linkType: soft
 
@@ -10324,7 +10324,7 @@ __metadata:
   resolution: "web@workspace:apps/web"
   dependencies:
     "@aviarymail/config": "workspace:*"
-    "@aviarymail/typestache": "workspace:*"
+    "@aviarymail/hbs-to-jtd": "workspace:*"
     "@felte/solid": ^0.3.0
     "@felte/validator-zod": ^0.3.8
     "@types/lodash": ^4.14.178

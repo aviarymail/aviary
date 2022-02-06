@@ -43,10 +43,10 @@ export type Message = {
 };
 
 export enum MessageStatuses {
-  ACTIVE = "ACTIVE",
-  ERROR = "ERROR",
-  INACTIVE = "INACTIVE",
-  WARNING = "WARNING",
+  Active = "Active",
+  Error = "Error",
+  Inactive = "Inactive",
+  Warning = "Warning",
 }
 
 export type Mutation = {
@@ -162,9 +162,9 @@ export type TeamMembership = {
 };
 
 export enum TeamRoles {
-  ADMIN = "ADMIN",
-  BILLING = "BILLING",
-  MEMBER = "MEMBER",
+  Admin = "Admin",
+  Billing = "Billing",
+  Member = "Member",
 }
 
 export type User = {
@@ -183,9 +183,9 @@ export type User = {
 };
 
 export enum UserRoles {
-  MADE = "MADE",
-  SUPPORT = "SUPPORT",
-  USER = "USER",
+  Made = "Made",
+  Support = "Support",
+  User = "User",
 }
 
 export type MeQueryVariables = Exact<{ [key: string]: never }>;
@@ -234,7 +234,7 @@ export type LogoutMutation = {
   logout: { __typename: "SuccessResponse"; success: boolean };
 };
 
-export type MessageListItemFieldsFragment = {
+export type MessageListFieldsFragment = {
   __typename: "Message";
   id: string;
   status: MessageStatuses;
@@ -244,7 +244,7 @@ export type MessageListItemFieldsFragment = {
   category: string;
 };
 
-export type MessageListFieldsFragment = {
+export type MessageListItemFieldsFragment = {
   __typename: "Message";
   id: string;
   status: MessageStatuses;
@@ -276,6 +276,7 @@ export type VerifyLoginCodeMutation = {
     email: string;
     firstName: string;
     lastName: string;
+    role: UserRoles;
   };
 };
 
@@ -591,6 +592,7 @@ export const VerifyLoginCodeDocument = {
                 { kind: "Field", name: { kind: "Name", value: "email" } },
                 { kind: "Field", name: { kind: "Name", value: "firstName" } },
                 { kind: "Field", name: { kind: "Name", value: "lastName" } },
+                { kind: "Field", name: { kind: "Name", value: "role" } },
               ],
             },
           },
