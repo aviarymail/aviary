@@ -6,10 +6,10 @@
   "main": "src/index.ts",
   "dependencies": {
     "form-data": "^4.0.0",
-    "ioredis": "^4.28.3",
-    "mailgun.js": "^4.1.6",
+    "ioredis": "^4.28.4",
+    "mailgun.js": "^4.2.1",
     "nanoid": "^3.2.0",
-    "pino": "^7.6.4"
+    "pino": "^7.6.5"
   },
   "devDependencies": {
     "@aviarymail/config": "workspace:*",

@@ -7,7 +7,7 @@
     "start:css": "npx tailwindcss -i ./src/styles.css -o ./build/styles.css --watch"
   },
   "dependencies": {
-    "fastify": "^3.27.0",
+    "fastify": "^3.27.1",
     "handlebars": "^4.7.7",
     "nodemon": "^2.0.15"
   },

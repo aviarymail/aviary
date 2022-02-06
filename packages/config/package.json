@@ -10,7 +10,7 @@
     "tsconfig.solid.json"
   ],
   "devDependencies": {
-    "dotenv": "^14.3.2",
+    "dotenv": "^16.0.0",
     "env-var": "^7.1.1",
     "findup-sync": "^5.0.0"
   }

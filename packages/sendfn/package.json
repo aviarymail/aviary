@@ -9,7 +9,7 @@
   "devDependencies": {
     "@aviarymail/client": "workspace:*",
     "@aviarymail/config": "workspace:*",
-    "cleye": "^1.0.2",
+    "cleye": "^1.1.0",
     "pkg": "^5.5.2",
     "tasuku": "^1.0.2"
   }

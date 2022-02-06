@@ -42,7 +42,7 @@ enum VariableTypes {
   Object
 }
 
-enum TemplateLanguages {
+enum TplLanguages {
   Handlebars
 }
 
@@ -144,139 +144,56 @@ model TeamInvite {
 }
 
 model Project {
-  id        String    @id @default(cuid())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   name      String
   //
   teamId    String
-  team      Team      @relation(fields: [teamId], references: [id])
-  messages  Message[]
+  team      Team     @relation(fields: [teamId], references: [id])
 
   @@index(teamId)
 }
 
-model BlockSet {
-  id        String    @id @default(cuid())
-  updatedAt DateTime  @updatedAt
-  name      String
+model ProjectSettings {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  companyName String
+  logoWidth   String
+
   //
-  blocks    Block[]
-  messages  Message[]
+  logoId          String
+  logo            Upload   @relation(fields: [logoId], references: [id])
+  blocksetId      String
+  blockset        Blockset @relation(fields: [blocksetId], references: [id])
+  defaultLayoutId String
+  defaultLayout   Block    @relation(fields: [defaultLayoutId], references: [id])
+}
+
+model Upload {
+  id              String            @id @default(cuid())
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  bucket          String
+  url             String
+  //
+  projectSettings ProjectSettings[] @ignore
+}
+
+model Blockset {
+  id              String            @id @default(cuid())
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  name            String
+  //
+  projectSettings ProjectSettings[] @ignore
 }
 
 model Block {
-  id            String          @id @default(cuid())
-  updatedAt     DateTime        @updatedAt
-  name          String
-  description   String?
-  order         Int             @default(0)
-  layout        Boolean
-  markup        String
-  css           String?
-  precomp       String
-  schema        Json
-  //
-  blocksetId    String
-  blockset      BlockSet        @relation(fields: [blocksetId], references: [id])
-  categoryId    String
-  category      BlockCategory   @relation(fields: [categoryId], references: [id])
-  props         BlockProp[]
-  messageBlocks TemplateBlock[] @ignore
-
-  @@index(blocksetId)
-  @@index(categoryId)
-}
-
-model BlockCategory {
-  id     String  @id @default(cuid())
-  name   String
-  //
-  blocks Block[]
-}
-
-model BlockProp {
-  id           String        @id @default(cuid())
-  order        Int           @default(0)
-  name         String
-  key          String
-  description  String?
-  type         VariableTypes
-  defaultValue Json?
-  enumMembers  Json?
-  array        Boolean       @default(false)
-  //
-  blockId      String
-  block        Block         @relation(fields: [blockId], references: [id])
-  parentId     String?
-  parent       BlockProp?    @relation("BlockPropToBlockProp", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  children     BlockProp[]   @relation("BlockPropToBlockProp")
-
-  @@unique([blockId, key])
-  @@index(blockId)
-  @@index(parentId)
-}
-
-model Message {
-  id          String          @id @default(cuid())
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
-  prefab      Boolean
-  name        String
-  slug        String
-  description String
-  markup      String?
-  css         String?
-  schema      String?
-  status      MessageStatuses @default(Active)
-  sent        Int             @default(0)
-  category    String
-  //
-  blocksetId  String
-  blockset    BlockSet        @relation(fields: [blocksetId], references: [id])
-  projectId   String?
-  project     Project?        @relation(fields: [projectId], references: [id])
-  blocks      TemplateBlock[]
-  params      TemplateParam[]
-
-  @@unique([projectId, name])
-  @@unique([projectId, slug])
-  @@index(blocksetId)
-  @@index(projectId)
-}
-
-model TemplateParam {
-  id           String          @id @default(cuid())
-  order        Int             @default(0)
-  key          String
-  type         VariableTypes
-  defaultValue Json?
-  enumMembers  Json?
-  array        Boolean         @default(false)
-  //
-  templateId   String
-  template     Message         @relation(fields: [templateId], references: [id])
-  parentId     String?
-  parent       TemplateParam?  @relation("TemplateParamToTemplateParam", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  children     TemplateParam[] @relation("TemplateParamToTemplateParam")
-
-  @@unique([templateId, key])
-  @@index(templateId)
-  @@index(parentId)
-}
-
-model TemplateBlock {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  props     Json
-  layout    Boolean
-  //
-  messageId String
-  message   Message  @relation(fields: [messageId], references: [id])
-  blockId   String
-  block     Block    @relation(fields: [blockId], references: [id])
-
-  @@index(messageId)
-  @@index(blockId)
+  id              String            @id @default(cuid())
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  name            String
+  projectSettings ProjectSettings[] @ignore
 }
