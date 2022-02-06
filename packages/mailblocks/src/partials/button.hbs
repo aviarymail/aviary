@@ -1,29 +1,27 @@
+{{! -----------------------------------------------
+
+bgColor
+label
+textColor
+url
+width
+
+------------------------------------------------ }}
+
 <div>
   <!--[if mso]>
-    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://" style="height: 44px; v-text-anchor: middle; width: 200px" arcsize="10%" strokecolor="#000000" fillcolor="#000000">
+    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ url }}" style="height: 44px; v-text-anchor: middle; width: {{width}}" arcsize="10%" strokecolor="{{ bg }}" fillcolor="{{ bg }}">
       <w:anchorlock />
-      <center style="color: #ffffff; font-family: sans-serif; font-size: 13px; font-weight: bold">
+      <center style="color: {{ textColor }}; font-family: sans-serif; font-size: 15px; font-weight: bold">
         {{label}}
       </center>
     </v:roundrect>
   <![endif]-->
   <a
-    href="http://"
-    style="
-      background-color: #000000;
-      border: 1px solid #000000;
-      border-radius: 4px;
-      color: #ffffff;
-      display: inline-block;
-      font-family: sans-serif;
-      font-size: 15px;
-      line-height: 44px;
-      text-align: center;
-      text-decoration: none;
-      width: 200px;
-      -webkit-text-size-adjust: none;
-      mso-hide: all;
-    ">
-    {{label}}
+    href='{{url}}'
+    class='font-sans text-[15px] leading-[44px] text-center no-underline rounded-sm inline-block mobile:w-full'
+    style='background-color: \{{bgColor}}; border: 1px solid \{{bgColor}}; color: \{{textColor}}; width: \{{width}}; -webkit-text-size-adjust: none; mso-hide: all;'
+  >
+    \{{label}}
   </a>
 </div>

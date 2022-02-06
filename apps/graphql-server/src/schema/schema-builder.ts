@@ -1,12 +1,11 @@
 // https://pothos-graphql.dev/
-import SchemaBuilder from '@pothos/core';
-import ScopeAuthPlugin from '@pothos/plugin-scope-auth';
-import PrismaPlugin from '@pothos/plugin-prisma';
-import ValidationPlugin from '@pothos/plugin-validation';
 import { db } from '@aviarymail/db';
-
-import { ISchemaBuilder } from './schema-builder.interface';
+import SchemaBuilder from '@pothos/core';
+import PrismaPlugin from '@pothos/plugin-prisma';
+import ScopeAuthPlugin from '@pothos/plugin-scope-auth';
+import ValidationPlugin from '@pothos/plugin-validation';
 import { authScopes } from './lib/auth-scopes';
+import { ISchemaBuilder } from './schema-builder.interface';
 
 export const builder = new SchemaBuilder<ISchemaBuilder>({
   defaultInputFieldRequiredness: true,

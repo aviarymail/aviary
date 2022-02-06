@@ -1,0 +1,49 @@
+{{!
+
+p
+h1
+h2
+body
+color
+align
+maxWidth
+
+}}
+
+<table
+  role='presentation'
+  width='100%'
+  align='\{{ align }}'
+  cellpadding='0'
+  cellspacing='0'
+  border='0'
+>
+  <tr>
+    <td align='\{{ align }}'>
+      \{{#if h1}}
+      <h1
+        class='text-3xl mobile:text-xl leading-tight'
+        style='text-align: \{{ align }}; color: \{{color}}; max-width: \{{maxWidth}}'
+      >
+        \{{ body }}
+      </h1>
+      \{{/if}}
+      \{{#if h2}}
+      <h2
+        class='text-xl mobile:text-lg leading-normal'
+        style='text-align: \{{ align }}; color: \{{color}}; max-width: \{{maxWidth}}'
+      >
+        \{{ body }}
+      </h2>
+      \{{/if}}
+      \{{#if p}}
+      <p
+        class='text-lg mobile:text-md leading-relaxed'
+        style='text-align: \{{ align }}; color: \{{color}}; max-width: \{{maxWidth}}'
+      >
+        \{{ body }}
+      </p>
+      \{{/if}}
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,58 @@
+{
+  "blocks": [
+    {
+      "block": "spacer",
+      "data": {
+        "sm": true
+      }
+    },
+    {
+      "block": "button-row",
+      "data": {
+        "label": "Testing This",
+        "bgColor": "#000000",
+        "textColor": "#ffffff",
+        "width": "250px",
+        "align": "center"
+      }
+    },
+    {
+      "block": "spacer",
+      "data": {
+        "lg": true
+      }
+    },
+    {
+      "block": "button-row",
+      "data": {
+        "label": "Testing",
+        "bgColor": "#cccccc",
+        "textColor": "#000000",
+        "width": "180px",
+        "align": "left"
+      }
+    },
+    {
+      "block": "spacer",
+      "data": {
+        "sm": true
+      }
+    },
+    {
+      "block": "button-row",
+      "data": {
+        "label": "Testing",
+        "bgColor": "#c43c43",
+        "textColor": "#ffffff",
+        "width": "180px",
+        "align": "right"
+      }
+    },
+    {
+      "block": "spacer",
+      "data": {
+        "sm": true
+      }
+    }
+  ]
+}

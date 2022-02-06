@@ -1,0 +1,17 @@
+{{! -----------------------------------------------
+
+align
+class
+width
+
+------------------------------------------------ }}
+
+<!--[if true]>
+  <td class='mobile:w-full mobile:block {{ class }}' width="{{width}}" align="{{align}}">
+<![endif]-->
+<div class='table-cell mobile:block mobile:w-full {{ class }}' style="width: {{width}}; text-align: {{align}}">
+  {{> @partial-block }}
+</div>
+<!--[if true]>
+  </td>
+<![endif]-->

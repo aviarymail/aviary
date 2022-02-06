@@ -32,7 +32,7 @@
     "graphql-redis-subscriptions": "^2.4.2",
     "graphql-subscriptions": "^2.0.0",
     "http-status-codes": "^2.2.0",
-    "ioredis": "^4.28.4",
+    "ioredis": "^4.28.5",
     "lodash": "^4.17.21",
     "mercurius": "^9.2.0",
     "mqemitter-redis": "^4.2.0",

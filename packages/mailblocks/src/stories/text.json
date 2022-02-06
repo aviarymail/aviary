@@ -1,0 +1,87 @@
+{
+  "blocks": [
+    {
+      "block": "spacer",
+      "data": {
+        "xl": true
+      }
+    },
+    {
+      "block": "text",
+      "data": {
+        "h1": true,
+        "body": "Nibh Mattis Purus Aenean Tortor",
+        "color": "#000000",
+        "align": "center"
+      }
+    },
+    {
+      "block": "spacer",
+      "data": {
+        "xs": true
+      }
+    },
+    {
+      "block": "text",
+      "data": {
+        "h2": true,
+        "body": "Sollicitudin Tellus Justo",
+        "color": "#999999",
+        "align": "center"
+      }
+    },
+    {
+      "block": "spacer",
+      "data": {
+        "sm": true
+      }
+    },
+    {
+      "block": "text",
+      "data": {
+        "p": true,
+        "body": "Sed posuere consectetur est at lobortis. Maecenas faucibus mollis interdum. Donec ullamcorper nulla non metus auctor fringilla.",
+        "color": "#ccc",
+        "align": "center",
+        "maxWidth": "420px"
+      }
+    },
+    {
+      "block": "spacer",
+      "data": {
+        "xl": true
+      }
+    },
+    {
+      "block": "text",
+      "data": {
+        "h1": true,
+        "body": "Sed posuere consectetur est at.",
+        "color": "#000",
+        "align": "left"
+      }
+    },
+    {
+      "block": "spacer",
+      "data": {
+        "md": true
+      }
+    },
+    {
+      "block": "text",
+      "data": {
+        "p": true,
+        "body": "Sed posuere consectetur est at lobortis. Maecenas faucibus mollis interdum. Donec ullamcorper nulla non metus auctor fringilla.",
+        "color": "#000",
+        "align": "left",
+        "maxWidth": "540px"
+      }
+    },
+    {
+      "block": "spacer",
+      "data": {
+        "xl": true
+      }
+    }
+  ]
+}

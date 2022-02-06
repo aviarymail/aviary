@@ -1,7 +1,7 @@
-import { FastifyRequest, FastifyReply } from 'fastify';
+import { PothosPrismaTypes } from '@aviarymail/db';
+import { FastifyReply, FastifyRequest } from 'fastify';
 import { SocketStream } from 'fastify-websocket';
 import { PubSub } from 'mercurius';
-import { PothosPrismaTypes } from '@aviarymail/db';
 
 export interface ISchemaBuilder {
   Scalars: {

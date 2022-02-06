@@ -11,15 +11,16 @@ server.register(require('fastify-static'), {
 });
 
 server.get('/', (req, reply) => {
-  const blocks = readdirSync(resolve(__dirname, 'blocks')).map(
-    b => `
+  const stories = readdirSync(resolve(__dirname, 'stories')).map(file => {
+    const name = file.replace('.json', '');
+    return `
       <li>
-        <a href="/${b}" class="text-white text-sm capitalize hover:underline">
-          ${b.replace(/-/g, ' ')}
+        <a href="/stories/${name}" class="text-white text-sm capitalize hover:underline">
+          ${name.replace(/-/g, ' ')}
         </a>
       </li>
-    `
-  );
+    `;
+  });
   const examples = readdirSync(resolve(__dirname, 'examples')).map(file => {
     const name = file.replace('.json', '');
     return `
@@ -33,8 +34,8 @@ server.get('/', (req, reply) => {
 
   reply.type('text/html').send(
     html(`
-      <ul>
-        ${blocks.join('')}
+      <ul class="ml-20">
+        ${stories.join('')}
       </ul>
       <ul class="ml-20">
         ${examples.join('')}
@@ -58,6 +59,20 @@ server.get('/:block', (req, reply) => {
 
 server.get('/examples/:example', (req, reply) => {
   const json = example(req.params.example);
+  const rendered = json.blocks.map(b => block(b.block, b.data));
+
+  reply.type('text/html').send(
+    html(`
+      <a href="/" class="text-white top-5 left-5 absolute">Back</a>
+      <div class="bg-white rounded shadow-2xl w-[960px]">
+        ${rendered.join('')}
+      </div>
+    `)
+  );
+});
+
+server.get('/stories/:story', (req, reply) => {
+  const json = story(req.params.story);
   const rendered = json.blocks.map(b => block(b.block, b.data));
 
   reply.type('text/html').send(
@@ -115,7 +130,8 @@ readdirSync(resolve(__dirname, 'partials')).forEach(name => {
 });
 
 readdirSync(resolve(__dirname, 'blocks')).forEach(name => {
-  const file = readFileSync(resolve(__dirname, `blocks/${name}/index.hbs`), 'utf8');
+  name = name.replace('.hbs', '');
+  const file = readFileSync(resolve(__dirname, `blocks/${name}.hbs`), 'utf8');
   hbs.registerPartial(name, file);
 });
 
@@ -125,9 +141,10 @@ server.listen(3000, err => {
 });
 
 function block(name, d) {
-  const file = readFileSync(resolve(__dirname, `blocks/${name}/index.hbs`), 'utf8');
+  name = name.replace('.hbs', '');
+  const file = readFileSync(resolve(__dirname, `blocks/${name}.hbs`), 'utf8');
   const preflight = hbs.compile(file)({});
-  return hbs.compile(preflight)(d || data(name) || {});
+  return hbs.compile(preflight)(d || {});
 }
 
 function example(name) {
@@ -139,9 +156,9 @@ function example(name) {
   }
 }
 
-function data(name) {
+function story(name) {
   try {
-    const file = readFileSync(resolve(__dirname, `blocks/${name}/data.json`), 'utf8');
+    const file = readFileSync(resolve(__dirname, `stories/${name}.json`), 'utf8');
     return JSON.parse(file);
   } catch {
     return {};

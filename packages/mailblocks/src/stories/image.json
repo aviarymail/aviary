@@ -1,0 +1,39 @@
+{
+  "blocks": [
+    {
+      "block": "spacer",
+      "data": {
+        "xl": true
+      }
+    },
+    {
+      "block": "image",
+      "data": {
+        "src": "https://img.search.brave.com/Mwwd8JtCElVobkcLrn7mM2nT2Tx5AL_0MI3hJ9NNDvg/rs:fit:560:320:1/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy9i/L2I2L0ltYWdlX2Ny/ZWF0ZWRfd2l0aF9h/X21vYmlsZV9waG9u/ZS5wbmc",
+        "alt": "Testing This"
+      }
+    },
+    {
+      "block": "spacer",
+      "data": {
+        "xl": true
+      }
+    },
+    {
+      "block": "image",
+      "data": {
+        "src": "https://img.search.brave.com/Mwwd8JtCElVobkcLrn7mM2nT2Tx5AL_0MI3hJ9NNDvg/rs:fit:560:320:1/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy9i/L2I2L0ltYWdlX2Ny/ZWF0ZWRfd2l0aF9h/X21vYmlsZV9waG9u/ZS5wbmc",
+        "alt": "Testing This",
+        "align": "center",
+        "maxWidth": "100px",
+        "borderRadius": "200px"
+      }
+    },
+    {
+      "block": "spacer",
+      "data": {
+        "xl": true
+      }
+    }
+  ]
+}

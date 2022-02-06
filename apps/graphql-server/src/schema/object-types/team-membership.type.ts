@@ -1,7 +1,7 @@
 import { TeamRoles } from '@aviarymail/db';
 import { builder } from '../schema-builder';
 
-export const $TeamMembership = builder.prismaObject('TeamMembership', {
+builder.prismaObject('TeamMembership', {
   findUnique({ id }) {
     return { id };
   },

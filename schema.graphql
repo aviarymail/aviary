@@ -5,29 +5,6 @@ input CreateProjectInput {
 
 scalar DateTime
 
-type Message {
-  category: String!
-  createdAt: DateTime!
-  css: String
-  description: String!
-  id: ID!
-  markup: String
-  name: String!
-  prefab: Boolean!
-  schema: String
-  sent: Int!
-  slug: String!
-  status: MessageStatuses!
-  updatedAt: DateTime!
-}
-
-enum MessageStatuses {
-  Active
-  Error
-  Inactive
-  Warning
-}
-
 type Mutation {
   createProject(input: CreateProjectInput!): Project!
   logout: SuccessResponse!
@@ -46,7 +23,6 @@ input PaginationInput {
 type Project {
   createdAt: DateTime!
   id: ID!
-  messages: [Message!]!
   name: String!
   team: Team!
   teamId: ID!
