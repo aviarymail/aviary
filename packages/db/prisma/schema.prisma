@@ -156,12 +156,11 @@ model Project {
 }
 
 model ProjectSettings {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  companyName String
-  logoWidth   String
-
+  id              String   @id @default(cuid())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  companyName     String
+  logoWidth       String
   //
   logoId          String
   logo            Upload   @relation(fields: [logoId], references: [id])

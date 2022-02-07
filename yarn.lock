@@ -86,10 +86,8 @@ __metadata:
     fastify: ^3.27.1
     fastify-static: ^4.5.0
     handlebars: ^4.7.7
-    htm: ^3.1.0
     nodemon: ^2.0.15
     tailwindcss: ^3.0.18
-    vhtml: ^2.2.0
   languageName: unknown
   linkType: soft
 
@@ -6370,13 +6368,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"htm@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "htm@npm:3.1.0"
-  checksum: d6d00146bcc1d2cc45ae6e82f5a54e8b5d1142fe67d3b7363503926c426f608e359ae7bc67242efa0e6afda278ae3865a303d82200a4399cabe53c0a05f82fa8
-  languageName: node
-  linkType: hard
-
 "html-entities@npm:2.3.2":
   version: 2.3.2
   resolution: "html-entities@npm:2.3.2"
@@ -11404,13 +11395,6 @@ __metadata:
     vc: dist/index.js
     vercel: dist/index.js
   checksum: 988b0c0c108251a6b475584069963dc997562ecf0542dcb13779afa144ea8b6ff65a2703c631d220c8810067ec8d3c15fc0c56e64df566dff9aa86a481a715ac
-  languageName: node
-  linkType: hard
-
-"vhtml@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "vhtml@npm:2.2.0"
-  checksum: bced190936454f35cb9c80aa0374f7ba3684604a2df45fee226b9edb19b8fdf09f17d292a1fadf033d815ce7e65162fc70fd2fa82d6895d0d539712c55236927
   languageName: node
   linkType: hard
 
