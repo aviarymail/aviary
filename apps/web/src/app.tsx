@@ -1,14 +1,13 @@
-import 'virtual:windi.css';
-import './styles.css';
+import { useNavigate } from 'solid-app-router';
+import { createSignal, onMount, Show } from 'solid-js';
 import { Outlet } from 'solid-start/components';
 import { gql, Provider } from 'solid-urql';
-
+import 'virtual:windi.css';
 import { Header } from './components/module/header';
-import { urql } from './lib/urql';
-import { createSignal, onMount, Show } from 'solid-js';
-import { MeDocument } from './gql.types';
+import { MeDocument } from './graphql.generated';
 import { setCurrentUser } from './lib/current-user-store';
-import { useNavigate } from 'solid-app-router';
+import { urql } from './lib/urql';
+import './styles.css';
 
 gql`
   query Me {

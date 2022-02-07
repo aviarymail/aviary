@@ -1,45 +1,44 @@
 import { createSignal } from 'solid-js';
-import { MessageList } from '~/components/module/message-list';
-import { MessageListFieldsFragment, MessageStatuses } from '~/gql.types';
+// import { MessageListFieldsFragment, MessageStatuses } from '~/graphql.generated';
 
-const exampleMessages: MessageListFieldsFragment[] = [
-  {
-    __typename: 'Message',
-    description: 'Maecenas sed diam eget risus varius blandit sit amet non magna.',
-    id: '1',
-    name: 'Welcome',
-    sent: 123,
-    status: MessageStatuses.ACTIVE,
-    category: 'Onboarding',
-  },
-  {
-    __typename: 'Message',
-    description: 'Nullam quis risus eget urna mollis ornare vel eu leo.',
-    id: '3',
-    name: 'Passwordless Login',
-    sent: 0,
-    status: MessageStatuses.INACTIVE,
-    category: 'Authentication',
-  },
-  {
-    __typename: 'Message',
-    description: 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.',
-    id: '2',
-    name: '2FA',
-    sent: 4123,
-    status: MessageStatuses.ERROR,
-    category: 'Authentication',
-  },
-  {
-    __typename: 'Message',
-    description: 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.',
-    id: '4',
-    name: 'New Subscription',
-    sent: 895,
-    status: MessageStatuses.WARNING,
-    category: 'SaaS',
-  },
-];
+// const exampleMessages: MessageListFieldsFragment[] = [
+//   {
+//     __typename: 'Message',
+//     description: 'Maecenas sed diam eget risus varius blandit sit amet non magna.',
+//     id: '1',
+//     name: 'Welcome',
+//     sent: 123,
+//     status: MessageStatuses.Active,
+//     category: 'Onboarding',
+//   },
+//   {
+//     __typename: 'Message',
+//     description: 'Nullam quis risus eget urna mollis ornare vel eu leo.',
+//     id: '3',
+//     name: 'Passwordless Login',
+//     sent: 0,
+//     status: MessageStatuses.Inactive,
+//     category: 'Authentication',
+//   },
+//   {
+//     __typename: 'Message',
+//     description: 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.',
+//     id: '2',
+//     name: '2FA',
+//     sent: 4123,
+//     status: MessageStatuses.Error,
+//     category: 'Authentication',
+//   },
+//   {
+//     __typename: 'Message',
+//     description: 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.',
+//     id: '4',
+//     name: 'New Subscription',
+//     sent: 895,
+//     status: MessageStatuses.Warning,
+//     category: 'SaaS',
+//   },
+// ];
 
 export default function Dashboard() {
   const [displayList, setDisplayList] = createSignal(true);
@@ -55,7 +54,7 @@ export default function Dashboard() {
         </button>
       </div>
 
-      <MessageList messages={exampleMessages} displayList={displayList()} />
+      {/* <MessageList messages={exampleMessages} displayList={displayList()} /> */}
     </main>
   );
 }

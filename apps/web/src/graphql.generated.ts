@@ -25,30 +25,6 @@ export type CreateProjectInput = {
   teamId: Scalars["ID"];
 };
 
-export type Message = {
-  __typename: "Message";
-  category: Scalars["String"];
-  createdAt: Scalars["DateTime"];
-  css?: Maybe<Scalars["String"]>;
-  description: Scalars["String"];
-  id: Scalars["ID"];
-  markup?: Maybe<Scalars["String"]>;
-  name: Scalars["String"];
-  prefab: Scalars["Boolean"];
-  schema?: Maybe<Scalars["String"]>;
-  sent: Scalars["Int"];
-  slug: Scalars["String"];
-  status: MessageStatuses;
-  updatedAt: Scalars["DateTime"];
-};
-
-export enum MessageStatuses {
-  Active = "Active",
-  Error = "Error",
-  Inactive = "Inactive",
-  Warning = "Warning",
-}
-
 export type Mutation = {
   __typename: "Mutation";
   createProject: Project;
@@ -86,7 +62,6 @@ export type Project = {
   __typename: "Project";
   createdAt: Scalars["DateTime"];
   id: Scalars["ID"];
-  messages: Array<Message>;
   name: Scalars["String"];
   team: Team;
   teamId: Scalars["ID"];
@@ -192,39 +167,31 @@ export type MeQueryVariables = Exact<{ [key: string]: never }>;
 
 export type MeQuery = {
   __typename: "Query";
-  me?:
-    | {
+  me?: {
+    __typename: "User";
+    id: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    teamInvites: Array<{
+      __typename: "TeamInvite";
+      id: string;
+      invitedBy: {
         __typename: "User";
         id: string;
-        email: string;
         firstName: string;
         lastName: string;
-        teamInvites: Array<{
-          __typename: "TeamInvite";
-          id: string;
-          invitedBy: {
-            __typename: "User";
-            id: string;
-            firstName: string;
-            lastName: string;
-          };
-          team: { __typename: "Team"; id: string; name: string };
-        }>;
-        teamMemberships: Array<{
-          __typename: "TeamMembership";
-          id: string;
-          createdAt: string;
-          role: TeamRoles;
-          team: {
-            __typename: "Team";
-            id: string;
-            createdAt: string;
-            name: string;
-          };
-        }>;
-      }
-    | null
-    | undefined;
+      };
+      team: { __typename: "Team"; id: string; name: string };
+    }>;
+    teamMemberships: Array<{
+      __typename: "TeamMembership";
+      id: string;
+      createdAt: string;
+      role: TeamRoles;
+      team: { __typename: "Team"; id: string; createdAt: string; name: string };
+    }>;
+  } | null;
 };
 
 export type LogoutMutationVariables = Exact<{ [key: string]: never }>;
@@ -232,26 +199,6 @@ export type LogoutMutationVariables = Exact<{ [key: string]: never }>;
 export type LogoutMutation = {
   __typename: "Mutation";
   logout: { __typename: "SuccessResponse"; success: boolean };
-};
-
-export type MessageListFieldsFragment = {
-  __typename: "Message";
-  id: string;
-  status: MessageStatuses;
-  name: string;
-  description: string;
-  sent: number;
-  category: string;
-};
-
-export type MessageListItemFieldsFragment = {
-  __typename: "Message";
-  id: string;
-  status: MessageStatuses;
-  name: string;
-  description: string;
-  sent: number;
-  category: string;
 };
 
 export type RequestLoginCodeMutationVariables = Exact<{
@@ -289,53 +236,6 @@ export type SignUpMutation = {
   signup: { __typename: "SuccessResponse"; success: boolean };
 };
 
-export const MessageListItemFieldsFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "MessageListItemFields" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Message" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "status" } },
-          { kind: "Field", name: { kind: "Name", value: "name" } },
-          { kind: "Field", name: { kind: "Name", value: "description" } },
-          { kind: "Field", name: { kind: "Name", value: "sent" } },
-          { kind: "Field", name: { kind: "Name", value: "category" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<MessageListItemFieldsFragment, unknown>;
-export const MessageListFieldsFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "MessageListFields" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Message" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          {
-            kind: "FragmentSpread",
-            name: { kind: "Name", value: "MessageListItemFields" },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<MessageListFieldsFragment, unknown>;
 export const MeDocument = {
   kind: "Document",
   definitions: [

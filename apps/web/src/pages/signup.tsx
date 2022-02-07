@@ -1,11 +1,10 @@
 import { Title } from 'solid-meta';
 import { createMutation, gql } from 'solid-urql';
 import { object, output, string } from 'zod';
-
-import { SignUpDocument } from '~/gql.types';
-import { createForm } from '~/hooks/create-form';
 import { Button } from '~/components/base/button';
 import { TextInput } from '~/components/base/text-input';
+import { SignUpDocument } from '~/graphql.generated';
+import { createForm } from '~/hooks/create-form';
 
 gql`
   mutation SignUp($input: SignupInput!) {

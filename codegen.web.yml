@@ -1,11 +1,11 @@
 overwrite: true
 schema: ./schema.graphql
 documents:
-  - '!apps/web/src/gql.types.ts'
+  - '!apps/web/src/graphql.generated.ts'
   - 'apps/web/src/**/*.{ts,tsx}'
 
 generates:
-  apps/web/src/gql.types.ts:
+  apps/web/src/graphql.generated.ts:
     plugins:
       - typescript
       - typescript-operations

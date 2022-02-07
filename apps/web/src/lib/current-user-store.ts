@@ -1,5 +1,5 @@
 import { createStore } from 'solid-js/store';
-import { UserRoles } from '~/gql.types';
+import { UserRoles } from '~/graphql.generated';
 
 interface CurrentUserStore {
   loggedIn: boolean;

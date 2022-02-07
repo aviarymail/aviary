@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from 'solid-app-router';
 import { createMutation, gql } from 'solid-urql';
-import { LogoutDocument } from '~/gql.types';
+import { LogoutDocument } from '~/graphql.generated';
 import { currentUser, setCurrentUser } from '~/lib/current-user-store';
 import { IconLeave } from '../svg/icon-leave.svg';
 import { Wordmark } from '../svg/wordmark.svg';

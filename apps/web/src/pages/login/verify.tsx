@@ -5,7 +5,7 @@ import { createMutation, gql } from 'solid-urql';
 import { object, output, string } from 'zod';
 import { Button } from '~/components/base/button';
 import { TextInput } from '~/components/base/text-input';
-import { VerifyLoginCodeDocument } from '~/gql.types';
+import { VerifyLoginCodeDocument } from '~/graphql.generated';
 import { createForm } from '~/hooks/create-form';
 import { setCurrentUser } from '~/lib/current-user-store';
 

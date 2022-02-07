@@ -4,7 +4,7 @@ import { createMutation, gql } from 'solid-urql';
 import { object, output, string } from 'zod';
 import { Button } from '~/components/base/button';
 import { TextInput } from '~/components/base/text-input';
-import { RequestLoginCodeDocument } from '~/gql.types';
+import { RequestLoginCodeDocument } from '~/graphql.generated';
 import { createForm } from '~/hooks/create-form';
 
 const schema = object({

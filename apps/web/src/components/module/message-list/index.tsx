@@ -1,20 +1,18 @@
 import { groupBy } from 'lodash';
 import { Component, createMemo, For } from 'solid-js';
-import { gql } from 'solid-urql';
-import { MessageListItemFieldsFragment } from '~/gql.types';
-import { MessageListItem, MESSAGE_LIST_ITEM_FIELDS } from './message-list-item';
+import { MessageListItem } from './message-list-item';
 
-export const MESSAGE_LIST_FIELDS = gql`
-  fragment MessageListFields on Message {
-    id
-    ...MessageListItemFields
-  }
+// export const MESSAGE_LIST_FIELDS = gql`
+//   fragment MessageListFields on Message {
+//     id
+//     ...MessageListItemFields
+//   }
 
-  ${MESSAGE_LIST_ITEM_FIELDS}
-`;
+//   ${MESSAGE_LIST_ITEM_FIELDS}
+// `;
 interface Props {
   displayList: boolean;
-  messages: MessageListItemFieldsFragment[];
+  messages: any[];
 }
 
 export const MessageList: Component<Props> = props => {
