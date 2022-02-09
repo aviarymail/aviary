@@ -2,7 +2,7 @@
   "cleanUrls": true,
   "functions": {
     "api/*.ts": {
-      "runtime": "@vercel/node"
+      "runtime": "@vercel/node@1.12.1"
     }
   }
 }

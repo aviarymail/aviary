@@ -1,15 +1,19 @@
 {
-  "name": "@aviarymail/cli",
+  "name": "@aviarymail/sendfn",
   "version": "0.0.0",
   "license": "Apache-2.0",
+  "type": "module",
   "scripts": {
-    "dev": "ts-node ./src/index.ts",
+    "dev": "ts-node ./src/index",
     "build": "tsc -b && pkg ./dist/src/index.js --out-path bin"
   },
   "devDependencies": {
     "@aviarymail/client": "workspace:*",
-    "@aviarymail/config": "workspace:*",
+    "@aviarymail/config": "workspace:*"
+  },
+  "dependencies": {
     "cleye": "^1.1.0",
+    "node-fetch": "^3.2.0",
     "pkg": "^5.5.2",
     "tasuku": "^1.0.2"
   }

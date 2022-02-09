@@ -2,6 +2,9 @@
   "name": "functions",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "start": "vercel dev --listen 4000"
+  },
   "dependencies": {
     "@aviarymail/config": "workspace:*",
     "@vercel/node": "^1.12.1"

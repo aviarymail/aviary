@@ -6,14 +6,15 @@
   "scripts": {
     "clean": "./scripts/clean.sh",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "start": "turbo run start --scope=graphql-server --scope=web",
+    "start": "turbo run start --scope=graphql-server --scope=web --scope=functions",
     "fns": "yarn workspace fns",
     "web": "yarn workspace web",
+    "functions": "yarn workspace functions",
     "graphql-server": "yarn workspace graphql-server",
     "client": "yarn workspace @aviarymail/client",
     "db": "yarn workspace @aviarymail/db",
     "mailblocks": "yarn workspace @aviarymail/mailblocks",
-    "sendn": "yarn workspace @aviarymail/sendn",
+    "sendfn": "yarn workspace @aviarymail/sendfn",
     "services": "yarn workspace @aviarymail/services",
     "hbs-to-jtd": "yarn workspace @aviarymail/hbs-to-jtd",
     "gen:gql:web": "graphql-codegen --config codegen.web.yml"
@@ -34,7 +35,7 @@
     "vitest": "^0.2.7"
   },
   "resolutions": {
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.2.0",
     "solid-start-node": "0.1.0-alpha.55"
   },
   "workspaces": [
