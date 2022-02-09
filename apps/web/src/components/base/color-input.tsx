@@ -22,11 +22,11 @@ export const ColorInput: Component<Props> = props => {
         <input
           {...props}
           id={props.id || props.name}
-          className="border rounded-sm bg-gray-100 border-gray-100 w-full py-2 px-3 placeholder-gray-400"
+          className="border rounded-sm bg-gray-100 border-gray-100 w-full py-2 pr-3 pl-12 placeholder-gray-400"
           classList={{ 'border-red-400': Boolean(props.error) }}
           onInput={e => props.onTextChange?.(e.currentTarget.value)}
         />
-        <div className="absolute right-1 bottom-1 h-8 w-8 rounded overflow-hidden">
+        <div className="absolute left-1 bottom-1 h-8 w-8 rounded overflow-hidden">
           <input
             type="color"
             className="absolute -top-1 -left-1 w-10 h-10"

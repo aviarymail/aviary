@@ -156,18 +156,25 @@ model Project {
 }
 
 model ProjectSettings {
-  id              String   @id @default(cuid())
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  companyName     String
-  logoWidth       String
+  id               String   @id @default(cuid())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  companyName      String
+  logoWidth        String
+  bodyBgColor      String
+  headerTextColor  String
+  footerTextColor  String
+  containerBgColor String
+  textColor        String
+  ctaBgColor       String
+  ctaTextColor     String
   //
-  logoId          String
-  logo            Upload   @relation(fields: [logoId], references: [id])
-  blocksetId      String
-  blockset        Blockset @relation(fields: [blocksetId], references: [id])
-  defaultLayoutId String
-  defaultLayout   Block    @relation(fields: [defaultLayoutId], references: [id])
+  logoId           String
+  logo             Upload   @relation(fields: [logoId], references: [id])
+  blocksetId       String
+  blockset         Blockset @relation(fields: [blocksetId], references: [id])
+  defaultLayoutId  String
+  defaultLayout    Block    @relation(fields: [defaultLayoutId], references: [id])
 }
 
 model Upload {

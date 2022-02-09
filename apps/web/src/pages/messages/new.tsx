@@ -1,9 +1,8 @@
-import { CustomTemplateEditor } from '~/components/module/custom-template-editor';
+import { createQuery } from 'solid-urql';
+import { MeDocument } from '~/graphql.generated';
 
 export default function NewMessagePage() {
-  return (
-    <main className="container mx-auto">
-      <CustomTemplateEditor />
-    </main>
-  );
+  const [data] = createQuery({ query: MeDocument });
+
+  return <main className="container mx-auto"></main>;
 }
